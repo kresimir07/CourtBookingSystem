@@ -1,12 +1,10 @@
 package org.example.tennisv3.service.impl;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.tennisv3.model.Surface;
 import org.example.tennisv3.repository.SurfaceRepository;
 import org.example.tennisv3.service.SurfaceService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -27,9 +25,5 @@ public class SurfaceServiceImpl implements SurfaceService {
         log.info("Fetching all surface types");
         return surfaceRepository.findAll();
     }
-
-
-
-
 
 }
