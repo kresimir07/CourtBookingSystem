@@ -16,17 +16,20 @@ public class SurfaceController {
 
     private final SurfaceService surfaceService;
 
-    @GetMapping("/surfaceType")
+    @GetMapping("/surface")
     @ResponseStatus(HttpStatus.OK)
     public List<Surface> getSurfaceTypes() {
         return surfaceService.getSurfaceTypes();
     }
 
-    @PostMapping("/save")
+    @PostMapping("/surface/surface-to-save")
     @ResponseStatus(HttpStatus.CREATED)
     public void saveSurfaceType(@RequestBody Surface surface) {
-        surfaceService.save(surface);
+        surfaceService.saveSurfaceType(surface);
+
     }
+
+
 
 
 

@@ -15,8 +15,9 @@ public class SurfaceServiceImpl implements SurfaceService {
     private final SurfaceRepository surfaceRepository;
 
 
+
     @Override
-    public Surface save(Surface surface) {
+    public Surface saveSurfaceType(Surface surface) {
         log.info("Saving new surface {} to the database", surface.getName());
         return surfaceRepository.save(surface);
     }
