@@ -16,6 +16,7 @@ public class Court {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "surface_id")
     private Surface surface;
 
     private boolean isIndoor;
@@ -24,4 +25,6 @@ public class Court {
         this.surface = surface;
         this.isIndoor = isIndoor;
     }
+
+
 }
