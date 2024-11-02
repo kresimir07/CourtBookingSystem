@@ -1,13 +1,16 @@
 package org.example.tennisv3.model;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import static jakarta.persistence.FetchType.LAZY;
+
 
 @Entity
 @Data
@@ -17,9 +20,15 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private long id;
     private String name;
 
+    @ManyToMany(mappedBy = "roles", fetch = LAZY)
+    @JsonIgnore
+    private Collection<User> users = new ArrayList<>();
 
+    public Role(String name) {
+        this.name = name;
+    }
 }
