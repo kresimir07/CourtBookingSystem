@@ -4,6 +4,7 @@ import org.example.tennisv3.model.Court;
 import org.example.tennisv3.model.Role;
 import org.example.tennisv3.model.Surface;
 import org.example.tennisv3.model.User;
+import org.example.tennisv3.service.CourtService;
 import org.example.tennisv3.service.RoleService;
 import org.example.tennisv3.service.SurfaceService;
 import org.example.tennisv3.service.UserService;
@@ -19,6 +20,7 @@ public class DataLoader implements CommandLineRunner {
     private final UserService userService;
     private final RoleService roleService;
     private final SurfaceService surfaceService;
+    private final CourtService courtService;
 
     @Override
     public void run(String... args) throws Exception {
@@ -40,6 +42,11 @@ public class DataLoader implements CommandLineRunner {
         surfaceService.saveSurfaceType(new Surface("Grass"));
         surfaceService.saveSurfaceType(new Surface("Hard"));
         surfaceService.saveSurfaceType(new Surface("Carpet"));
+//        TODO ADD some sample court data to DataLoader
+//        courtService.saveCourtName(new Court("Court A","Clay", "False"));
+
+
+
 
 
 
