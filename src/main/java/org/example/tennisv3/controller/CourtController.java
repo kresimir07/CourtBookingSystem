@@ -13,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CourtController {
 
+
     private final CourtService courtService;
 
     @GetMapping("/courts")

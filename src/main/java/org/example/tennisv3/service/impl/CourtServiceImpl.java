@@ -1,13 +1,10 @@
 package org.example.tennisv3.service.impl;
-
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.tennisv3.model.Court;
 import org.example.tennisv3.repository.CourtRepository;
 import org.example.tennisv3.service.CourtService;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -31,7 +28,6 @@ public class CourtServiceImpl implements CourtService {
         log.info("Fetching all court names");
         return courtRepository.findAll();
     }
-
 
 
 }

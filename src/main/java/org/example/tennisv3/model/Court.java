@@ -19,7 +19,6 @@ public class Court {
     @ManyToOne
     @JoinColumn(name = "surface_id")
     private Surface surface;
-
     private boolean isIndoor;
 
     public Court(String name, Surface surface, boolean isIndoor) {

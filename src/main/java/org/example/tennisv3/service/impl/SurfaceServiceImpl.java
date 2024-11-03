@@ -27,4 +27,9 @@ public class SurfaceServiceImpl implements SurfaceService {
         return surfaceRepository.findAll();
     }
 
+    @Override
+    public Surface findSurfaceTypeByName(String name) {
+        return surfaceRepository.findByName(name);
+    }
+
 }

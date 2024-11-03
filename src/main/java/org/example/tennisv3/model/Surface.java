@@ -18,12 +18,15 @@ public class Surface {
     private Long id;
     private String name;
 
+
+
     public Surface(String name) {
         this.name = name;
     }
 
     @OneToMany(mappedBy = "surface",cascade = CascadeType.ALL)
     private Collection<Court> courts;
+
 
 
 

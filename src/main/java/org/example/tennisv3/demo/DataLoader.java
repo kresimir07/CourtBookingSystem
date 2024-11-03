@@ -1,5 +1,7 @@
 package org.example.tennisv3.demo;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import lombok.experimental.StandardException;
 import org.example.tennisv3.model.Court;
 import org.example.tennisv3.model.Role;
 import org.example.tennisv3.model.Surface;
@@ -9,10 +11,14 @@ import org.example.tennisv3.service.RoleService;
 import org.example.tennisv3.service.SurfaceService;
 import org.example.tennisv3.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.example.tennisv3.service.impl.SurfaceServiceImpl;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
+
+@Data
 @Component
 @RequiredArgsConstructor
 public class DataLoader implements CommandLineRunner {
@@ -38,20 +44,21 @@ public class DataLoader implements CommandLineRunner {
         roleService.addRoleToUser("vvulic", "ROLE_USER");
         roleService.addRoleToUser("hcolic", "ROLE_ADMIN");
 
-        surfaceService.saveSurfaceType(new Surface("Clay"));
-        surfaceService.saveSurfaceType(new Surface("Grass"));
-        surfaceService.saveSurfaceType(new Surface("Hard"));
-        surfaceService.saveSurfaceType(new Surface("Carpet"));
-//        TODO ADD some sample court data to DataLoader
-//        courtService.saveCourtName(new Court("Court A","Clay", "False"));
+        // Save surface - had to declare variables first
+        Surface clay = surfaceService.saveSurfaceType(new Surface("Clay"));
+        Surface grass = surfaceService.saveSurfaceType(new Surface("Grass"));
+        Surface hard = surfaceService.saveSurfaceType(new Surface("Hard"));
+        Surface carpet = surfaceService.saveSurfaceType(new Surface("Carpet"));
 
 
-
-
-
-
-
-
-
+        // Save courts - able to save with above surface variables
+        courtService.saveCourtName(new Court("Court A", clay, FALSE));
+        courtService.saveCourtName(new Court("Court B", grass, FALSE));
+        courtService.saveCourtName(new Court("Court C", hard, FALSE));
+        courtService.saveCourtName(new Court("Court D", carpet, TRUE));
     }
+
+
+
 }
+
