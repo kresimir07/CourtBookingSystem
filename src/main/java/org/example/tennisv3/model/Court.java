@@ -14,6 +14,7 @@ public class Court {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private String name;
 
     @ManyToOne
     @JoinColumn(name = "surface_id")
@@ -21,10 +22,9 @@ public class Court {
 
     private boolean isIndoor;
 
-    public Court(Surface surface, boolean isIndoor) {
+    public Court(String name, Surface surface, boolean isIndoor) {
+        this.name = name;
         this.surface = surface;
         this.isIndoor = isIndoor;
     }
-
-
 }
