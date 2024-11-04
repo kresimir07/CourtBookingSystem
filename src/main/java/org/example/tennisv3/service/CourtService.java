@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface CourtService {
 
-    Court saveCourtName(Court court);
+    void saveCourtName(Court court);
     List<Court> getCourtNames();
 
 

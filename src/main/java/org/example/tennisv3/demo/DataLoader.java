@@ -1,7 +1,5 @@
 package org.example.tennisv3.demo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
-import lombok.experimental.StandardException;
 import org.example.tennisv3.model.Court;
 import org.example.tennisv3.model.Role;
 import org.example.tennisv3.model.Surface;
@@ -29,7 +27,7 @@ public class DataLoader implements CommandLineRunner {
     private final CourtService courtService;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         roleService.save(new Role("ROLE_USER"));
         roleService.save(new Role("ROLE_ADMIN"));
 

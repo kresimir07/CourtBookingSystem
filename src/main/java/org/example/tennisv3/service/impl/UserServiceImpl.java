@@ -76,18 +76,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }).orElseThrow(() -> {
             String errorMsg = "User with id " + id +" not found";
             log.error(errorMsg);
-            throw new UsernameNotFoundException(errorMsg);
+            return new UsernameNotFoundException(errorMsg);
         });
     }
 
     @Transactional
-    public User deleteUserById(Long id) {
+    public void deleteUserById(Long id) {
         log.info("Deleting user with id {}", id);
-        return userRepository.findById(id).map(user -> {
+        userRepository.findById(id).map(user -> {
             userRepository.delete(user);
             return user;
         }).orElseThrow(() -> {
-            String errorMsg2 = "User with id " + id +" not found";
+            String errorMsg2 = "User with id " + id + " not found";
             log.error(errorMsg2);
             return new UsernameNotFoundException(errorMsg2);
         });

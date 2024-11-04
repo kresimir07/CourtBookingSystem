@@ -1,11 +1,9 @@
 package org.example.tennisv3.model;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import static jakarta.persistence.FetchType.EAGER;
 
 @Entity
 @Data
