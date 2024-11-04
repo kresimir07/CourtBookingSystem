@@ -18,8 +18,8 @@ public class SurfaceController {
 
     @GetMapping("/surface")
     @ResponseStatus(HttpStatus.OK)
-    public List<Surface> getSurfaceTypes() {
-        return surfaceService.getSurfaceTypes();
+    public List<Surface> getSurfaces() {
+        return surfaceService.getSurfaces();
     }
 
     @PostMapping("/surface/surface-to-save")

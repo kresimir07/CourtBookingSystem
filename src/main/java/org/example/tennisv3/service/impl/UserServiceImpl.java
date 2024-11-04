@@ -1,5 +1,6 @@
 package org.example.tennisv3.service.impl;
 
+import jakarta.transaction.Transactional;
 import org.example.tennisv3.model.User;
 import org.example.tennisv3.repository.UserRepository;
 import org.example.tennisv3.service.UserService;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -23,7 +26,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
 
     private final UserRepository userRepository;
-
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -55,15 +57,34 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User getUser(String username) {
-        log.info("Fetching user {}", username);
-        return userRepository.findByUsername(username);
-    }
-
-
-    @Override
     public List<User> getUsers() {
         log.info("Fetching all users");
         return userRepository.findAll();
     }
+
+    @Override
+    public User updateUser(Long id, User updatedUser) {
+        log.info("Updating user with id {}", id);
+        return userRepository.findById(id).map(user -> {
+            user.setName(updatedUser.getName());
+            user.setUsername(updatedUser.getUsername());
+            if (!updatedUser.getPassword().isEmpty()) {
+                user.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+            }
+            user.setRoles(updatedUser.getRoles());
+            return userRepository.save(user);
+        }).orElseThrow(() -> new UsernameNotFoundException("User not found with id " + id));
+    }
+
+    @Transactional
+    public User deleteUserById(Long id) {
+        log.info("Deleting user with id {}", id);
+        return userRepository.findById(id).map(user -> {
+            userRepository.delete(user);
+            return user;
+        }).orElseThrow(() -> new UsernameNotFoundException("User not found with id " + id));
+    }
+
+
+   
 }

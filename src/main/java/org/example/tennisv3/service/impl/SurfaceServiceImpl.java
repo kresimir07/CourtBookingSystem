@@ -22,14 +22,11 @@ public class SurfaceServiceImpl implements SurfaceService {
         return surfaceRepository.save(surface);
     }
     @Override
-    public List<Surface> getSurfaceTypes() {
+    public List<Surface> getSurfaces() {
         log.info("Fetching all surface types");
         return surfaceRepository.findAll();
     }
 
-    @Override
-    public Surface findSurfaceTypeByName(String name) {
-        return surfaceRepository.findByName(name);
-    }
+
 
 }

@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import static jakarta.persistence.FetchType.EAGER;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -16,10 +18,14 @@ public class Court {
     private Long id;
     private String name;
 
+
     @ManyToOne
     @JoinColumn(name = "surface_id")
     private Surface surface;
     private boolean isIndoor;
+
+
+
 
     public Court(String name, Surface surface, boolean isIndoor) {
         this.name = name;

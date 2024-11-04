@@ -6,8 +6,8 @@ import java.util.List;
 public interface SurfaceService {
 
     Surface saveSurfaceType(Surface surface);
-    List<Surface> getSurfaceTypes();
-    Surface findSurfaceTypeByName(String name);
+    List<Surface> getSurfaces();
+
 
 
 }
