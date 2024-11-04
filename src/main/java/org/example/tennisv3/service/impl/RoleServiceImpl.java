@@ -72,7 +72,7 @@ public class RoleServiceImpl implements RoleService {
         }
     }
 
-//    I did not created method and route for modifying user role, because that change i can make from ("users/{id}")
+//    I haven't created method and route for modifying user role, because that change is possible from Users side
 
 
 

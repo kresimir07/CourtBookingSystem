@@ -3,7 +3,7 @@ package org.example.tennisv3.security.filters;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.example.tennisv3.dto.LoginRequest;
+import org.example.tennisv3.dto.LoginRequestDTO;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -50,16 +50,16 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
             ObjectMapper mapper = new ObjectMapper();
-            LoginRequest loginRequest = mapper.readValue(request.getInputStream(), LoginRequest.class);
+            LoginRequestDTO loginRequestDTO = mapper.readValue(request.getInputStream(), LoginRequestDTO.class);
 
             // Creating an Authentication token with given username and password
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
-                    loginRequest.getUsername(),
-                    loginRequest.getPassword()
+                    loginRequestDTO.getUsername(),
+                    loginRequestDTO.getPassword()
             );
 
-            log.info("Username is: {}", loginRequest.getUsername());
-            log.info("Password is: {}", loginRequest.getPassword());
+            log.info("Username is: {}", loginRequestDTO.getUsername());
+            log.info("Password is: {}", loginRequestDTO.getPassword());
 
             // Attempting to authenticate the user with the given credentials
             return authenticationManager.authenticate(authenticationToken);
