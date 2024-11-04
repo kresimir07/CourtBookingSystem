@@ -15,7 +15,7 @@ public class RoleController {
 
     private final RoleService roleService;
 
-//     Testirano i ispravno dodati poruku fetching all roles ili tako nesto
+//     Testirano i ispravno
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -31,7 +31,7 @@ public class RoleController {
         roleService.addRoleToUser(roleToUserDTO.getUsername(), roleToUserDTO.getRoleName());
     }
 
-//    Testirano i ispravno isto mozda dodati samo poruke
+//    Testirano i ispravno isto mozda dodati samo poruke, kao nova rola sacuvana
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -49,6 +49,11 @@ public class RoleController {
     }
 
 
+    @PutMapping("/remove-role-from-user")
+    @ResponseStatus(HttpStatus.OK)
+    public void removeRoleFromUser(@RequestBody RoleToUserDTO roleToUserDTO) {
+        roleService.removeRoleFromUser(roleToUserDTO.getUsername(), roleToUserDTO.getRoleName());
+    }
 
 
 }

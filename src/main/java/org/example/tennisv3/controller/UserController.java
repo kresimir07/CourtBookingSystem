@@ -4,6 +4,8 @@ import org.example.tennisv3.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+
 import java.util.List;
 
 @RestController
@@ -20,6 +22,7 @@ public class UserController {
     public List<User> getUsers() {
         return userService.getUsers();
     }
+
 // Testirano i ispravno, dodaje i rolu i usera za novog korisnika
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -38,6 +41,8 @@ public class UserController {
     public void delete(@PathVariable Long id) {
         userService.deleteUserById(id);
     }
+
+
 
 
 }

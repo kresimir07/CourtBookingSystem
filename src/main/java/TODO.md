@@ -7,6 +7,7 @@ Ne radi, treba istraziti sto moram napisati u body da bi to radilo
 * /surface/surface-to-save- ne funkcionira kako treba isto treba biti POST
 * /api/courts/courts-to-save mora biti kao POST
 * 
+* Edit security config file to add only routes for admin privileges, while other routes will be considered as non admin routes
  
   //@PostMapping("/courts")
   //public ResponseEntity<Court> addCourt(@RequestBody Court court) {

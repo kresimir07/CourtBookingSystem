@@ -26,9 +26,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
-        log.info("UserServiceImpl initialized!"); // Test log
     }
-
+//    Implementation of assigning ADMIN/USER roles by loading authorities from User object
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username);
@@ -92,5 +91,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             return new UsernameNotFoundException(errorMsg2);
         });
     }
-   
+
+
+
 }

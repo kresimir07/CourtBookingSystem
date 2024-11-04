@@ -9,6 +9,7 @@ public interface RoleService {
     List<Role> getRoles();
     void addRoleToUser(String username, String roleName);
     void deleteRoleById(Long id);
+    void removeRoleFromUser(String username, String roleName);
 
 
 }

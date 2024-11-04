@@ -9,7 +9,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 
 @Service
@@ -20,6 +19,12 @@ public class RoleServiceImpl implements RoleService {
 
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
+
+    @Override
+    public List<Role> getRoles() {
+        log.info("Fetching all roles");
+        return roleRepository.findAll();
+    }
 
     @Override
     public void newRole(Role role) {
@@ -52,15 +57,23 @@ public class RoleServiceImpl implements RoleService {
             log.error(errorMsg2);
             return new UsernameNotFoundException(errorMsg2);
         });
-
     }
 
-
-    @Override
-    public List<Role> getRoles() {
-        log.info("Fetching all roles");
-        return roleRepository.findAll();
+    @Transactional
+    public void removeRoleFromUser(String username, String roleName) {
+        log.info("Removing role {} from user {}", roleName, username);
+        User user = userRepository.findByUsername(username);
+        Role role = roleRepository.findByName(roleName);
+        if (user != null && role != null) {
+            user.getRoles().remove(role);
+            userRepository.save(user);
+        } else {
+            throw new RuntimeException("Role not found");
+        }
     }
+
+//    I did not created method and route for modifying user role, because that change i can make from ("users/{id}")
+
 
 
 }
