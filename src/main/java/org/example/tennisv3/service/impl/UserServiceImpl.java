@@ -1,5 +1,6 @@
 package org.example.tennisv3.service.impl;
 import jakarta.transaction.Transactional;
+import org.example.tennisv3.dto.UserResponseDTO;
 import org.example.tennisv3.model.User;
 import org.example.tennisv3.repository.UserRepository;
 import org.example.tennisv3.service.UserService;
@@ -59,7 +60,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public User updateUser(Long id, User updatedUser) {
+    public UserResponseDTO updateUser(Long id, User updatedUser) {
         log.info("Updating user with id {}", id);
 
         return userRepository.findById(id).map(user -> {
@@ -69,11 +70,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
                 user.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
             }
             user.setRoles(updatedUser.getRoles());
-            return userRepository.save(user);
+            User savedUser = userRepository.save(user);
+
+            return new UserResponseDTO("User updated successfully", savedUser);
         }).orElseThrow(() -> {
-            String errorMsg = "User not found with id " + id;
+            String errorMsg = "User with id " + id +" not found";
             log.error(errorMsg);
-            return new UsernameNotFoundException(errorMsg);
+            throw new UsernameNotFoundException(errorMsg);
         });
     }
 
@@ -84,7 +87,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             userRepository.delete(user);
             return user;
         }).orElseThrow(() -> {
-            String errorMsg2 = "User not found with id " + id;
+            String errorMsg2 = "User with id " + id +" not found";
             log.error(errorMsg2);
             return new UsernameNotFoundException(errorMsg2);
         });

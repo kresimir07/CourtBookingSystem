@@ -25,7 +25,7 @@ public class UserController {
     @ResponseStatus(HttpStatus.CREATED)
     public void saveUser(@RequestBody User user) {
         User newUser = userService.saveUser(user);
-        userService.saveUser(user);
+                userService.saveUser(user);
     }
 // Testirano i ispravno
     @PatchMapping("/{id}")

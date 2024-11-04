@@ -7,7 +7,6 @@ import org.example.tennisv3.service.RoleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -24,15 +23,19 @@ public class RoleServiceImpl implements RoleService {
         log.info("Saving new role {} to the database", role.getName());
         return roleRepository.save(role);
     }
-
+//    Method to replace existing and assign new role to User
     @Override
     public void addRoleToUser(String username, String roleName) {
         log.info("Adding role {} to user {}", roleName, username);
         User user = userRepository.findByUsername(username);
-        Role role = roleRepository.findByName(roleName);
-        user.getRoles().add(role);
-        userRepository.save(user);
-        roleRepository.save(role);
+        Role newRole = roleRepository.findByName(roleName);
+        if (user != null && newRole != null) {
+            user.getRoles().clear();
+            user.getRoles().add(newRole);
+            userRepository.save(user);
+        } else {
+            throw new RuntimeException("User or role not found");
+        }
     }
 
     @Override

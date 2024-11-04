@@ -1,12 +1,10 @@
 package org.example.tennisv3.controller;
 import org.example.tennisv3.dto.RoleToUserDTO;
 import org.example.tennisv3.model.Role;
-import org.example.tennisv3.model.User;
 import org.example.tennisv3.service.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 
@@ -16,7 +14,7 @@ import java.util.List;
 public class RoleController {
 
     private final RoleService roleService;
-//    TODO
+
 //ovo treba promijeniti u dodaj novu rolu
 //    @GetMapping("/roles")
 //    @ResponseStatus(HttpStatus.CREATED)
