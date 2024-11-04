@@ -1,5 +1,4 @@
 package org.example.tennisv3.service.impl;
-
 import jakarta.transaction.Transactional;
 import org.example.tennisv3.model.User;
 import org.example.tennisv3.repository.UserRepository;
@@ -11,6 +10,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -86,9 +89,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             userRepository.delete(user);
             return user;
         }).orElseThrow(() -> {
-            String errorMsg = "User not found with id " + id;
-            log.error(errorMsg);
-            return new UsernameNotFoundException(errorMsg);
+            String errorMsg2 = "User not found with id " + id;
+            log.error(errorMsg2);
+            return new UsernameNotFoundException(errorMsg2);
         });
     }
    

@@ -71,6 +71,7 @@ public class SecurityConfig {
                 .requestMatchers("/api/login/**").permitAll()// public endpoint, we could add more if we wanted to
                 .requestMatchers(GET, "/api/users").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                 .requestMatchers(POST, "/api/users/create").hasAnyAuthority("ROLE_ADMIN")
+                .requestMatchers(DELETE).hasAnyAuthority("ROLE_ADMIN")
                 .requestMatchers(GET, "/api/roles").hasAnyAuthority("ROLE_ADMIN")
                 .requestMatchers(PUT, "/api/roles/add-to-user").hasAnyAuthority("ROLE_ADMIN")
                 .requestMatchers(POST, "/api/roles/remove-from-user").hasAnyAuthority("ROLE_ADMIN")
@@ -78,6 +79,7 @@ public class SecurityConfig {
                 .requestMatchers(POST, "/surface/surface-to-save").hasAnyAuthority("ROLE_ADMIN")
                 .requestMatchers(GET, "/api/courts").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
                 .requestMatchers(POST, "/api/courts/courts-to-save").hasAnyAuthority("ROLE_ADMIN")
+                .requestMatchers(DELETE, "/api/users").hasAnyAuthority("ROLE_ADMIN")
                 .anyRequest().authenticated()); // any other endpoints require authentication
 
         // add the custom authentication filter to the http security object
