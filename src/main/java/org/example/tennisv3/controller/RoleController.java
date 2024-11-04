@@ -9,71 +9,51 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/roles")
 @RequiredArgsConstructor
 public class RoleController {
 
     private final RoleService roleService;
 
-//ovo treba promijeniti u dodaj novu rolu
-//    @GetMapping("/roles")
-//    @ResponseStatus(HttpStatus.CREATED)
-//    public void saveRole(@RequestBody Role role) {
-//        roleService.save(role);
-//    }
+//     Testirano i ispravno dodati poruku fetching all roles ili tako nesto
 
-    @PutMapping("/roles/add-to-user")
-    @ResponseStatus(HttpStatus.OK)
-    public void addRoleToUser(@RequestBody RoleToUserDTO roleToUserDTO) {
-        roleService.addRoleToUser(roleToUserDTO.getUsername(), roleToUserDTO.getRoleName());
-    }
-
-    @GetMapping("/roles")
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Role> getRoles() {
         return roleService.getRoles();
     }
 
+// Testirano i ispravno mozda dodati samo log poruke
+
+    @PutMapping("/add-to-user")
+    @ResponseStatus(HttpStatus.OK)
+    public void addOrModifyRoleToUser(@RequestBody RoleToUserDTO roleToUserDTO) {
+        roleService.addRoleToUser(roleToUserDTO.getUsername(), roleToUserDTO.getRoleName());
+    }
+
+//    Testirano i ispravno isto mozda dodati samo poruke
+
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void newRole(@RequestBody Role role) {
+        roleService.newRole(role);
+    }
+// Testirano i ispravno - dodati log poruke
+//   This will NOT work if role which is meant to be deleted is assigned to any of the users because of the foreign key constraint.
+//   To make it work use method unassignRoleFromAllUsers and then delete the role, reason why i did not wanted to implement
+//   as one function is to keep additional layer of security so that Admin would not delete ROLE_ADMIN by mistake
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id) {
+        roleService.deleteRoleById(id);
+    }
+
+
+
+
 }
 
-//// https://github.com/Amazon-Java-0824/9-Demo-HelloHappySeeds/blob/master/src/main/java/com/scorsaro/hellowebagain/controller/SeedController.java
-//Usporediti sa ovim i provjeriti zasto moj kod ne radi kad trebam promijenit varijablu
 
 
-//2. "/api/roles/add-to-user" ne radi kako treba
-//treba istraziti i vidjeti kako urediti rolu za usera
-//
-//Using Postman
-//Set PATCH as the HTTP method.
-//
-//Enter the URL, e.g., http://localhost:8080/users/{id}/role.
-//
-//In the Body tab, use JSON to send the new role:
-//
-//json
-//Copy code
-//{
-//        "name": "NewRole"
-//        }
-//
-//
-//        3. "/api/roles/remove-from-user
-//        Ne radi, treba istraziti sto moram napisati u body da bi to radilo
-//
-//4./surface/surface-to-save- ne funkcionira kako treba isto treba biti POST
-//
-//5. /api/courts/courts-to-save mora biti kao POST
-//
-//@PostMapping("/courts")
-//public ResponseEntity<Court> addCourt(@RequestBody Court court) {
-//    Court createdCourt = courtService.saveCourt(court);
-//    return ResponseEntity.status(HttpStatus.CREATED).body(createdCourt);
-//}
-//
-//
-//
-//        In summary, PUT is used for creating or replacing resources,
-//POST is used for creating or appending data to resources,
-//and PATCH is used for partially updating existing resources.
 
 

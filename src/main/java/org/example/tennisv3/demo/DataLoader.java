@@ -28,8 +28,8 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        roleService.save(new Role("ROLE_USER"));
-        roleService.save(new Role("ROLE_ADMIN"));
+        roleService.newRole(new Role("ROLE_USER"));
+        roleService.newRole(new Role("ROLE_ADMIN"));
 
 
         userService.saveUser(new User("Mario Maric", "mmaric", "1234"));

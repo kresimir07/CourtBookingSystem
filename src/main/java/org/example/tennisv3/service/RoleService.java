@@ -5,9 +5,10 @@ import java.util.List;
 
 public interface RoleService {
 
-    Role save(Role role);
+    void newRole(Role role);
     List<Role> getRoles();
     void addRoleToUser(String username, String roleName);
+    void deleteRoleById(Long id);
 
 
 }

@@ -6,7 +6,10 @@ import org.example.tennisv3.repository.UserRepository;
 import org.example.tennisv3.service.RoleService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 
 @Service
@@ -19,9 +22,9 @@ public class RoleServiceImpl implements RoleService {
     private final RoleRepository roleRepository;
 
     @Override
-    public Role save(Role role) {
+    public void newRole(Role role) {
         log.info("Saving new role {} to the database", role.getName());
-        return roleRepository.save(role);
+        roleRepository.save(role);
     }
 //    Method to replace existing and assign new role to User
     @Override
@@ -37,6 +40,21 @@ public class RoleServiceImpl implements RoleService {
             throw new RuntimeException("User or role not found");
         }
     }
+
+    @Transactional
+    public void deleteRoleById(Long id) {
+        log.info("Deleting role with id {}", id);
+        roleRepository.findById(id).map(role -> {
+            roleRepository.delete(role);
+            return role;
+        }).orElseThrow(() -> {
+            String errorMsg2 = "Role with id " + id + " not found";
+            log.error(errorMsg2);
+            return new UsernameNotFoundException(errorMsg2);
+        });
+
+    }
+
 
     @Override
     public List<Role> getRoles() {
