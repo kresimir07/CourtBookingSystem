@@ -37,10 +37,10 @@ public class DataLoader implements CommandLineRunner {
         userService.saveUser(new User("Valentina Vulic", "vvulic", "1234"));
         userService.saveUser(new User("Hana Colic", "hcolic", "1234"));
 
-        roleService.addRoleToUser("mmaric", "ROLE_USER");
-        roleService.addRoleToUser("kvulic", "ROLE_ADMIN");
-        roleService.addRoleToUser("vvulic", "ROLE_USER");
-        roleService.addRoleToUser("hcolic", "ROLE_ADMIN");
+        roleService.addOrModifyRoleToUser("mmaric", "ROLE_USER");
+        roleService.addOrModifyRoleToUser("kvulic", "ROLE_ADMIN");
+        roleService.addOrModifyRoleToUser("vvulic", "ROLE_USER");
+        roleService.addOrModifyRoleToUser("hcolic", "ROLE_ADMIN");
 
         // Save surface - had to declare variables first
         Surface clay = surfaceService.saveSurfaceType(new Surface("Clay"));

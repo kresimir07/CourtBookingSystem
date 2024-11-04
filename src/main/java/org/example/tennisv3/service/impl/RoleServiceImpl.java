@@ -31,9 +31,11 @@ public class RoleServiceImpl implements RoleService {
         log.info("Saving new role {} to the database", role.getName());
         roleRepository.save(role);
     }
+
+
 //    Method to replace existing and assign new role to User
     @Override
-    public void addRoleToUser(String username, String roleName) {
+    public void addOrModifyRoleToUser(String username, String roleName) {
         log.info("Adding role {} to user {}", roleName, username);
         User user = userRepository.findByUsername(username);
         Role newRole = roleRepository.findByName(roleName);

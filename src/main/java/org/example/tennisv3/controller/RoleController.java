@@ -28,7 +28,7 @@ public class RoleController {
     @PutMapping("/add-to-user")
     @ResponseStatus(HttpStatus.OK)
     public void addOrModifyRoleToUser(@RequestBody RoleToUserDTO roleToUserDTO) {
-        roleService.addRoleToUser(roleToUserDTO.getUsername(), roleToUserDTO.getRoleName());
+        roleService.addOrModifyRoleToUser(roleToUserDTO.getUsername(), roleToUserDTO.getRoleName());
     }
 
 //    Testirano i ispravno isto mozda dodati samo poruke, kao nova rola sacuvana
@@ -36,7 +36,7 @@ public class RoleController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void newRole(@RequestBody Role role) {
-        roleService.newRole(role);
+       roleService.newRole(role);
     }
 // Testirano i ispravno - dodati log poruke
 //   This will NOT work if role which is meant to be deleted is assigned to any of the users because of the foreign key constraint.
@@ -44,7 +44,7 @@ public class RoleController {
 //   as one function is to keep additional layer of security so that Admin would not delete ROLE_ADMIN by mistake
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Long id) {
+    public void deleteRoleById(@PathVariable Long id) {
         roleService.deleteRoleById(id);
     }
 
