@@ -4,7 +4,6 @@ import jakarta.transaction.Transactional;
 import org.example.tennisv3.model.User;
 import org.example.tennisv3.repository.UserRepository;
 import org.example.tennisv3.service.UserService;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,10 +16,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
-
 @Service
-@RequiredArgsConstructor
 @Slf4j
 public class UserServiceImpl implements UserService, UserDetailsService {
 
@@ -28,22 +24,24 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        log.info("UserServiceImpl initialized!"); // Test log
+    }
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // Retrieve user with the given username
         User user = userRepository.findByUsername(username);
-        // Check if user exists
         if (user == null) {
             log.error("User not found in the database");
             throw new UsernameNotFoundException("User not found in the database");
         } else {
             log.info("User found in the database: {}", username);
-            // Create a collection of SimpleGrantedAuthority objects from the user's roles
             Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
             user.getRoles().forEach(role -> {
                 authorities.add(new SimpleGrantedAuthority(role.getName()));
             });
-            // Return the user details, including the username, password, and authorities
             return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
         }
     }
@@ -65,6 +63,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public User updateUser(Long id, User updatedUser) {
         log.info("Updating user with id {}", id);
+
         return userRepository.findById(id).map(user -> {
             user.setName(updatedUser.getName());
             user.setUsername(updatedUser.getUsername());
@@ -73,7 +72,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             }
             user.setRoles(updatedUser.getRoles());
             return userRepository.save(user);
-        }).orElseThrow(() -> new UsernameNotFoundException("User not found with id " + id));
+        }).orElseThrow(() -> {
+            String errorMsg = "User not found with id " + id;
+            log.error(errorMsg);
+            return new UsernameNotFoundException(errorMsg);
+        });
     }
 
     @Transactional
@@ -82,9 +85,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userRepository.findById(id).map(user -> {
             userRepository.delete(user);
             return user;
-        }).orElseThrow(() -> new UsernameNotFoundException("User not found with id " + id));
+        }).orElseThrow(() -> {
+            String errorMsg = "User not found with id " + id;
+            log.error(errorMsg);
+            return new UsernameNotFoundException(errorMsg);
+        });
     }
-
-
    
 }
