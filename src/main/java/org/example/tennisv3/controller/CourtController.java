@@ -33,5 +33,11 @@ public class CourtController {
         return courtService.updateCourt(id, updatedCourt);
     }
 
+    @PutMapping("/surface-to-court")
+    @ResponseStatus(HttpStatus.OK)
+    public void addOrModifySurfaceToCourt(@RequestBody Court court) {
+        courtService.addOrModifySurfaceToCourt(court.getId(), court.getSurface().getId());
+    }
+
 
 }

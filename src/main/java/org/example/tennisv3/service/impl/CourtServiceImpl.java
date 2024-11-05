@@ -3,7 +3,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.tennisv3.dto.CourtResponseDTO;
 import org.example.tennisv3.model.Court;
+import org.example.tennisv3.model.Surface;
 import org.example.tennisv3.repository.CourtRepository;
+import org.example.tennisv3.repository.SurfaceRepository;
 import org.example.tennisv3.service.CourtService;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ public class CourtServiceImpl implements CourtService {
 
 
     private final CourtRepository courtRepository;
+    private final SurfaceRepository surfaceRepository;
 
 
     @Override
@@ -45,6 +48,19 @@ public class CourtServiceImpl implements CourtService {
             log.error(errorMsg);
             return new RuntimeException(errorMsg);
         });
+    }
+
+    @Override
+    public void addOrModifySurfaceToCourt(Long id, Long surfaceId) {
+        log.info("Adding surface with id {} to court with id {}", surfaceId, id);
+        Court court = courtRepository.findById(id).orElse(null);
+        Surface surface = surfaceRepository.findById(surfaceId).orElse(null);
+        if (court != null && surface != null) {
+            court.setSurface(surface);
+            courtRepository.save(court);
+        } else {
+            throw new RuntimeException("Court or surface not found");
+        }
     }
 
 }

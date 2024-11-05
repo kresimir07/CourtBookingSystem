@@ -9,6 +9,8 @@ public interface CourtService {
     void newCourt(Court court);
     List<Court> getAllCourts();
     Court updateCourt(Long id, Court updatedCourt);
+    void addOrModifySurfaceToCourt(Long id, Long surfaceId);
+//    void removeSurfaceFromCourt(Long id, Long surfaceId);
 
 
 
