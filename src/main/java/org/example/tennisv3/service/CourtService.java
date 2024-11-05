@@ -8,6 +8,7 @@ public interface CourtService {
 
     void newCourt(Court court);
     List<Court> getAllCourts();
+    Court updateCourt(Long id, Court updatedCourt);
 
 
 

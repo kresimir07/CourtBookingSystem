@@ -27,4 +27,11 @@ public class CourtController {
         courtService.newCourt(court);
     }
 
+    @PatchMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Court updateCourt(@PathVariable Long id, @RequestBody Court updatedCourt) {
+        return courtService.updateCourt(id, updatedCourt);
+    }
+
+
 }

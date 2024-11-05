@@ -5,12 +5,6 @@
 
 ~~* DELETE ROLES ne radi zbog foreign keya~~
 ~~* /surface/surface-to-save- ne funkcionira kako treba isto treba biti POST~~
-* /api/courts/courts-to-save mora biti kao POST
+~~* /api/courts/courts-to-save mora biti kao POST~~
 * 
 * Edit security config file to add only routes for admin privileges, while other routes will be considered as non admin routes
- 
-  //@PostMapping("/courts")
-  //public ResponseEntity<Court> addCourt(@RequestBody Court court) {
-  //    Court createdCourt = courtService.saveCourt(court);
-  //    return ResponseEntity.status(HttpStatus.CREATED).body(createdCourt);
-  //}
