@@ -18,17 +18,14 @@ public class CourtServiceImpl implements CourtService {
     private final CourtRepository courtRepository;
 
 
-
-
-
     @Override
-    public void saveCourtName(Court court) {
+    public void newCourt(Court court) {
         log.info("Saving court name {} to the database", court.getName());
         courtRepository.save(court);
     }
 
     @Override
-    public List<Court>getCourtNames() {
+    public List<Court> getAllCourts() {
         log.info("Fetching all court names");
         return courtRepository.findAll();
     }

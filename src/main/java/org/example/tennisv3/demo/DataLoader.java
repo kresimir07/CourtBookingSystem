@@ -50,10 +50,10 @@ public class DataLoader implements CommandLineRunner {
 
 
         // Save courts - able to save with above surface variables
-        courtService.saveCourtName(new Court("Court A", clay, FALSE));
-        courtService.saveCourtName(new Court("Court B", clay, FALSE));
-        courtService.saveCourtName(new Court("Court C", hard, FALSE));
-        courtService.saveCourtName(new Court("Court D", hard, TRUE));
+        courtService.newCourt(new Court("Court A", clay, FALSE));
+        courtService.newCourt(new Court("Court B", clay, FALSE));
+        courtService.newCourt(new Court("Court C", hard, FALSE));
+        courtService.newCourt(new Court("Court D", hard, TRUE));
     }
 
 

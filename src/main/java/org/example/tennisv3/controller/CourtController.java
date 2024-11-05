@@ -1,5 +1,4 @@
 package org.example.tennisv3.controller;
-
 import lombok.RequiredArgsConstructor;
 import org.example.tennisv3.model.Court;
 import org.example.tennisv3.service.CourtService;
@@ -16,20 +15,16 @@ public class CourtController {
 
     private final CourtService courtService;
 
-
-
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Court>getCourtNames() {
-        return courtService.getCourtNames();
+    public List<Court>getAllCourts() {
+        return courtService.getAllCourts();
     }
 
-    @PostMapping("/courts-to-save")
+    @PostMapping("/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveCourtName(@RequestBody Court court) {
-        courtService.saveCourtName(court);
+    public void newCourt(@RequestBody Court court) {
+        courtService.newCourt(court);
     }
-
-
 
 }
