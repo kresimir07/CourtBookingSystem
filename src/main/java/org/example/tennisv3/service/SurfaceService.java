@@ -5,8 +5,10 @@ import java.util.List;
 
 public interface SurfaceService {
 
-    Surface saveSurfaceType(Surface surface);
+    Surface newSurface(Surface surface);
     List<Surface> getSurfaces();
+    void deleteSurfaceById(Long id);
+
 
 
 

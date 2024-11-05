@@ -43,17 +43,17 @@ public class DataLoader implements CommandLineRunner {
         roleService.addOrModifyRoleToUser("hcolic", "ROLE_ADMIN");
 
         // Save surface - had to declare variables first
-        Surface clay = surfaceService.saveSurfaceType(new Surface("Clay"));
-        Surface grass = surfaceService.saveSurfaceType(new Surface("Grass"));
-        Surface hard = surfaceService.saveSurfaceType(new Surface("Hard"));
-        Surface carpet = surfaceService.saveSurfaceType(new Surface("Carpet"));
+        Surface clay = surfaceService.newSurface(new Surface("Clay"));
+        Surface grass = surfaceService.newSurface(new Surface("Grass"));
+        Surface hard = surfaceService.newSurface(new Surface("Hard"));
+        Surface carpet = surfaceService.newSurface(new Surface("Carpet"));
 
 
         // Save courts - able to save with above surface variables
         courtService.saveCourtName(new Court("Court A", clay, FALSE));
-        courtService.saveCourtName(new Court("Court B", grass, FALSE));
+        courtService.saveCourtName(new Court("Court B", clay, FALSE));
         courtService.saveCourtName(new Court("Court C", hard, FALSE));
-        courtService.saveCourtName(new Court("Court D", carpet, TRUE));
+        courtService.saveCourtName(new Court("Court D", hard, TRUE));
     }
 
 

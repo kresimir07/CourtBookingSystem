@@ -9,24 +9,27 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/courts")
 @RequiredArgsConstructor
 public class CourtController {
 
 
     private final CourtService courtService;
 
-    @GetMapping("/courts")
+
+
+    @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<Court>getCourtNames() {
         return courtService.getCourtNames();
     }
 
-    @PostMapping("/courts/courts-to-save")
+    @PostMapping("/courts-to-save")
     @ResponseStatus(HttpStatus.CREATED)
     public void saveCourtName(@RequestBody Court court) {
         courtService.saveCourtName(court);
     }
+
 
 
 }

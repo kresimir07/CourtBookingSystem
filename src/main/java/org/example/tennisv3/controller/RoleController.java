@@ -40,7 +40,7 @@ public class RoleController {
     }
 // Testirano i ispravno - dodati log poruke
 //   This will NOT work if role which is meant to be deleted is assigned to any of the users because of the foreign key constraint.
-//   To make it work use method unassignRoleFromAllUsers and then delete the role, reason why i did not wanted to implement
+//   To make it work use method removeRoleFromUser and then delete the role, reason why i did not wanted to implement
 //   as one function is to keep additional layer of security so that Admin would not delete ROLE_ADMIN by mistake
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

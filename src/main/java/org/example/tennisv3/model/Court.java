@@ -1,14 +1,14 @@
 package org.example.tennisv3.model;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class Court {
 
     @Id
@@ -23,11 +23,10 @@ public class Court {
     private boolean isIndoor;
 
 
-
-
     public Court(String name, Surface surface, boolean isIndoor) {
         this.name = name;
         this.surface = surface;
         this.isIndoor = isIndoor;
     }
+
 }
