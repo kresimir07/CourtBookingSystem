@@ -50,25 +50,42 @@ public class DataLoader implements CommandLineRunner {
 
 
         // Save courts - able to save with above surface variables
-        Court courtA = courtService.newCourt(new Court("Court A", clay, FALSE));
-        Court courtB = courtService.newCourt(new Court("Court B", clay, FALSE));
-        Court courtC = courtService.newCourt(new Court("Court C", hard, FALSE));
-        Court courtD = courtService.newCourt(new Court("Court D", hard, TRUE));
+        Court court1 = courtService.newCourt(new Court("Philippe Chatrier Court", clay, FALSE));
+        Court court2 = courtService.newCourt(new Court("Palexpo", carpet, FALSE));
+        Court court3 = courtService.newCourt(new Court("Centre Court", grass, FALSE));
+        Court court4 = courtService.newCourt(new Court("Rod Laver Arena", hard, TRUE));
 
         // Save bookings
         userService.getUserByUsername("mmaric")
-                .ifPresent(userMario -> bookingService.bookCourt(
-                        userMario.getId(),
-                        courtA.getId(),
+                .ifPresent(user -> bookingService.bookCourt(
+                        user.getId(),
+                        court1.getId(),
+                        LocalDateTime.of(2024, 12, 1, 10, 0)
+                ));
+
+        userService.getUserByUsername("kvulic")
+                .ifPresent(user -> bookingService.bookCourt(
+                        user.getId(),
+                        court2.getId(),
                         LocalDateTime.of(2024, 12, 1, 10, 0)
                 ));
 
         userService.getUserByUsername("vvulic")
-                .ifPresent(userValentina -> bookingService.bookCourt(
-                        userValentina.getId(),
-                        courtA.getId(),
-                        LocalDateTime.of(2023, 12, 2, 10, 0)
+                .ifPresent(user -> bookingService.bookCourt(
+                        user.getId(),
+                        court3.getId(),
+                        LocalDateTime.of(2024, 12, 1, 10, 0)
                 ));
+
+        userService.getUserByUsername("hcolic")
+                .ifPresent(user -> bookingService.bookCourt(
+                        user.getId(),
+                        court4.getId(),
+                        LocalDateTime.of(2024, 12, 1, 10, 0)
+                ));
+
+
+
 
 
 

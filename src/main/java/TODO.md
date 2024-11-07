@@ -6,10 +6,18 @@
 ~~* DELETE ROLES ne radi zbog foreign keya~~
 ~~* /surface/surface-to-save- ne funkcionira kako treba isto treba biti POST~~
 ~~* /api/courts/courts-to-save mora biti kao POST~~
-* 
-* Edit security config file to add only routes for admin privileges, while other routes will be considered as non admin routes
-* Validation that booking cant be made in history
-* Validation to check if the court is busy in requested time
-* Implement working hours of specific court and appropriate booking time and messages
-* Messages to Admin that there is a booking that needs to be confirmed, messages to user that his booking has been confirmed
-* 
+
+*Edit security config file to add only routes for admin privileges, while other routes will be considered as non admin routes*
+*Validation that booking cant be made in history* 
+*Validation to check if the court is busy in requested time*
+*Implement working hours of specific court and appropriate booking time and messages*
+*Messages to Admin that there is a booking that needs to be confirmed, messages to user that his booking has been confirmed*
+*Implement price for the booking reservation* 
+Modify security request/access for :
+    *Booking confirmations*
+    *Admin privileges*
+    *Check all privileges*
+
+*Implement entire history of booked courts by user - this will require to change my application properties ddl-auto to update*
+
+    
