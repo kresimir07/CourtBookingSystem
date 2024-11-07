@@ -12,7 +12,7 @@ public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-//    Provjeriti jel mi treba nullable
+
     @ManyToOne
     @JoinColumn(name = "user_id",nullable = false)
     private User user;

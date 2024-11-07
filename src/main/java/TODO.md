@@ -18,6 +18,7 @@ Court related:
 - *Booking duration - Option to book for entire hour and or 30minutes*
 - *Edit error message "Court not found" to list all available courts for easier reservation*
 
+
 Pricing related: 
 
 - *Implement price for the booking reservation 1hour = 4 Euro, 30 minutes = 2Euro*

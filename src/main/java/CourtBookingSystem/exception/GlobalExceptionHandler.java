@@ -14,4 +14,22 @@ public class GlobalExceptionHandler {
         UserResponseDTO response = new UserResponseDTO(ex.getMessage(), null);
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(CourtNotFoundException.class)
+    public ResponseEntity<UserResponseDTO> handleCourtNotFoundException(CourtNotFoundException ex) {
+        UserResponseDTO response = new UserResponseDTO(ex.getMessage(), null);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(CourtOccupiedException.class)
+    public ResponseEntity<UserResponseDTO> handleCourtOccupiedException(CourtOccupiedException ex) {
+        UserResponseDTO response = new UserResponseDTO(ex.getMessage(), null);
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+    }
+
+    @ExceptionHandler(BookingNotFoundException.class)
+    public ResponseEntity<UserResponseDTO> handleBookingNotFoundException(BookingNotFoundException ex) {
+        UserResponseDTO response = new UserResponseDTO(ex.getMessage(), null);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
 }

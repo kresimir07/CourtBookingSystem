@@ -1,5 +1,9 @@
 package CourtBookingSystem.service.impl;
 
+import CourtBookingSystem.exception.BookingNotFoundException;
+import CourtBookingSystem.exception.CourtNotFoundException;
+import CourtBookingSystem.exception.CourtOccupiedException;
+import CourtBookingSystem.exception.UsernameNotFoundException;
 import lombok.RequiredArgsConstructor;
 import CourtBookingSystem.model.Booking;
 import CourtBookingSystem.model.Court;
@@ -26,9 +30,9 @@ public class BookingServiceImpl implements BookingService {
     @Transactional
     public Booking newBookingRequest(Long userId, Long courtId, LocalDateTime bookingTime) {
         User user = userRepository.findById(userId).orElseThrow(() ->
-                new RuntimeException("User not found"));
+                new UsernameNotFoundException("User not found"));
         Court court = courtRepository.findById(courtId).orElseThrow(() ->
-                new RuntimeException("Court not found"));
+                new CourtNotFoundException("Court not found"));
 
         Booking booking = new Booking();
         booking.setUser(user);
@@ -50,9 +54,16 @@ public class BookingServiceImpl implements BookingService {
     @Transactional
     public void confirmBooking(Long bookingId, Boolean confirmed) {
         Booking booking = bookingRepository.findById(bookingId).orElseThrow(() ->
-                new RuntimeException("Booking not found"));
+                new BookingNotFoundException("Booking not found"));
         booking.setConfirmed(confirmed);
         bookingRepository.save(booking);
+    }
+
+    private void validateCourtAvailability(Long courtId, LocalDateTime bookingTime) {
+        boolean isOccupied = bookingRepository.existsByCourtIdAndBookingTime(courtId, bookingTime);
+        if (isOccupied) {
+            throw new CourtOccupiedException("Court is already occupied at this time.");
+        }
     }
 
 

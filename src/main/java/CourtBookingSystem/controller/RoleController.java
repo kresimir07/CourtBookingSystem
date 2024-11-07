@@ -33,7 +33,7 @@ public class RoleController {
 
 //    Testirano i ispravno isto mozda dodati samo poruke, kao nova rola sacuvana
 
-    @PostMapping
+    @PostMapping("/createRole")
     @ResponseStatus(HttpStatus.CREATED)
     public void newRole(@RequestBody Role role) {
        roleService.newRole(role);
