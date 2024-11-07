@@ -3,9 +3,12 @@ package courtBookingSystem.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
 @Entity
 public class Booking {
 
@@ -22,7 +25,7 @@ public class Booking {
     private Court court;
 
     @Column(nullable = false)
-    private LocalDateTime bookingTime;
+    private LocalDateTime bookingDateTime;
 
     @Column(nullable = false)
     private Boolean confirmed = false;

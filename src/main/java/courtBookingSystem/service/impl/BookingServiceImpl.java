@@ -43,7 +43,7 @@ public class BookingServiceImpl implements BookingService {
         Booking booking = new Booking();
         booking.setUser(user);
         booking.setCourt(court);
-        booking.setBookingTime(bookingDateTime);
+        booking.setBookingDateTime(bookingDateTime);
         return bookingRepository.save(booking);
 
     }
@@ -65,7 +65,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public boolean isCourtOccupied(Long courtId, LocalDateTime bookingDateTime) {
-        return bookingRepository.existsByCourtIdAndBookingTime(courtId, bookingDateTime);
+        return bookingRepository.existsByCourtIdAndBookingDateTime(courtId, bookingDateTime);
     }
 
     @Override
