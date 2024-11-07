@@ -25,6 +25,7 @@ Future updates to implement:
 - *Implement entire history of booked courts by user - this will require to change my application properties ddl-auto to update*
 - *Option for user to modify their own booking*
 - *Option for ADMIN to modiy ALL created bookings*
+- -*Test
 
 
 
