@@ -7,16 +7,20 @@
 
 ***
 Important updates to perform for final version: 
-- *Edit security config file to add only routes for admin privileges, while other routes will be considered as non admin routes*
-- *Validation that booking cant be made in history*
+
+~~- *Validation that booking cant be made in history*~~
 - *Validation to check if the court is busy in requested time*
 - *Implement working hours of specific court and appropriate booking time and messages*
-- *Implement price for the booking reservation*
+- *Implement price for the booking reservation 1hour = 4 Euro, 30 minutes = 2Euro*
+- *Booking duration - Option to book for entire hour and or 30minutes*
+- *Rename new booking method*
+
+SECURITY BASED: 
 - *Modify security request/access for :*
   - *Booking confirmations*
   - *Admin privileges*
   - *Check all privileges*
-  
+- *Edit security config file to add only routes for admin privileges, while other routes will be considered as non admin routes*
 - *Check privileges for both USER role, as it currently can edit user data, which means it can assign itself to ADMIN role*
 
 ***

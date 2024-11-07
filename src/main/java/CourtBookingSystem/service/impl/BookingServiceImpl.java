@@ -34,6 +34,9 @@ public class BookingServiceImpl implements BookingService {
         booking.setUser(user);
         booking.setCourt(court);
         booking.setBookingTime(bookingTime);
+        if (bookingTime.isBefore(LocalDateTime.now())) {
+            throw new RuntimeException("Booking cannot be made in the past!");
+        }
         return bookingRepository.save(booking);
 
     }
@@ -51,6 +54,8 @@ public class BookingServiceImpl implements BookingService {
         booking.setConfirmed(confirmed);
         bookingRepository.save(booking);
     }
+
+
 
 
 
