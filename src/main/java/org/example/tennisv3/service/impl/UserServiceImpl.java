@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Slf4j
@@ -89,6 +90,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             return new UsernameNotFoundException(errorMsg2);
         });
     }
+
+    @Override
+    public Optional<User> getUserByUsername(String username) {
+        // Assuming userRepository.findByUsername(String username) returns a User or null
+        return Optional.ofNullable(userRepository.findByUsername(username));
+    }
+
+
 
 
 

@@ -4,14 +4,13 @@ import org.example.tennisv3.model.Court;
 import org.example.tennisv3.model.Role;
 import org.example.tennisv3.model.Surface;
 import org.example.tennisv3.model.User;
-import org.example.tennisv3.service.CourtService;
-import org.example.tennisv3.service.RoleService;
-import org.example.tennisv3.service.SurfaceService;
-import org.example.tennisv3.service.UserService;
+import org.example.tennisv3.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+
+import java.time.LocalDateTime;
 
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
@@ -25,6 +24,7 @@ public class DataLoader implements CommandLineRunner {
     private final RoleService roleService;
     private final SurfaceService surfaceService;
     private final CourtService courtService;
+    private final BookingService bookingService;
 
     @Override
     public void run(String... args) {
@@ -50,10 +50,31 @@ public class DataLoader implements CommandLineRunner {
 
 
         // Save courts - able to save with above surface variables
-        courtService.newCourt(new Court("Court A", clay, FALSE));
-        courtService.newCourt(new Court("Court B", clay, FALSE));
-        courtService.newCourt(new Court("Court C", hard, FALSE));
-        courtService.newCourt(new Court("Court D", hard, TRUE));
+        Court courtA = courtService.newCourt(new Court("Court A", clay, FALSE));
+        Court courtB = courtService.newCourt(new Court("Court B", clay, FALSE));
+        Court courtC = courtService.newCourt(new Court("Court C", hard, FALSE));
+        Court courtD = courtService.newCourt(new Court("Court D", hard, TRUE));
+
+        // Save bookings
+        userService.getUserByUsername("mmaric")
+                .ifPresent(userMario -> bookingService.bookCourt(
+                        userMario.getId(),
+                        courtA.getId(),
+                        LocalDateTime.of(2024, 12, 1, 10, 0)
+                ));
+
+        userService.getUserByUsername("vvulic")
+                .ifPresent(userValentina -> bookingService.bookCourt(
+                        userValentina.getId(),
+                        courtA.getId(),
+                        LocalDateTime.of(2023, 12, 2, 10, 0)
+                ));
+
+
+
+
+
+
     }
 
 

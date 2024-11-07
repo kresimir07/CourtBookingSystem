@@ -23,9 +23,10 @@ public class CourtServiceImpl implements CourtService {
 
 
     @Override
-    public void newCourt(Court court) {
+    public Court newCourt(Court court) {
         log.info("Saving court name {} to the database", court.getName());
         courtRepository.save(court);
+        return court;
     }
 
     @Override

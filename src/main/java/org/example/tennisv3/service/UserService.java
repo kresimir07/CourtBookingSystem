@@ -1,6 +1,7 @@
 package org.example.tennisv3.service;
 import org.example.tennisv3.model.User;
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 
@@ -9,6 +10,8 @@ public interface UserService {
     List<User> getUsers();
     User updateUser(Long id, User updatedUser);
     void deleteUserById(Long id);
+    Optional<User> getUserByUsername(String username);
+
 
 
 }

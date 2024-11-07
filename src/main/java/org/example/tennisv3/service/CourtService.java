@@ -6,7 +6,7 @@ import java.util.List;
 public interface CourtService {
 
 
-    void newCourt(Court court);
+    Court newCourt(Court court);
     List<Court> getAllCourts();
     Court updateCourt(Long id, Court updatedCourt);
     void addOrModifySurfaceToCourt(Long id, Long surfaceId);
