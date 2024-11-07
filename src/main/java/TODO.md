@@ -8,13 +8,22 @@
 ***
 Important updates to perform for final version: 
 
+Court related:
 ~~- *Validation that booking cant be made in history*~~
+~~- *Rename new booking method*~~
+- *Option for user to modify their own booking*
+- *Option for ADMIN to modify ALL created bookings*
 - *Validation to check if the court is busy in requested time*
 - *Implement working hours of specific court and appropriate booking time and messages*
-- *Implement price for the booking reservation 1hour = 4 Euro, 30 minutes = 2Euro*
 - *Booking duration - Option to book for entire hour and or 30minutes*
-- *Rename new booking method*
 - *Edit error message "Court not found" to list all available courts for easier reservation*
+
+Pricing related: 
+
+- *Implement price for the booking reservation 1hour = 4 Euro, 30 minutes = 2Euro*
+
+Other: 
+
 - *Add explanations in Postman about requests*
 - *Create README file with all requirements from student portal*
 
@@ -30,9 +39,7 @@ SECURITY BASED:
 Future updates to implement: 
 - *Messages to Admin that there is a booking that needs to be confirmed, messages to user that his booking has been confirmed*
 - *Implement entire history of booked courts by user - this will require to change my application properties ddl-auto to update*
-- *Option for user to modify their own booking*
-- *Option for ADMIN to modiy ALL created bookings*
-- -*Test
+
 
 
 
