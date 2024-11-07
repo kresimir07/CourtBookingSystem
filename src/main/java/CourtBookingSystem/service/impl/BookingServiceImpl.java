@@ -26,21 +26,25 @@ public class BookingServiceImpl implements BookingService {
     private final UserRepository userRepository;
     private final CourtRepository courtRepository;
 
-    @Override
-    @Transactional
-    public Booking newBookingRequest(Long userId, Long courtId, LocalDateTime bookingTime) {
-        User user = userRepository.findById(userId).orElseThrow(() ->
-                new UsernameNotFoundException("User not found"));
-        Court court = courtRepository.findById(courtId).orElseThrow(() ->
-                new CourtNotFoundException("Court not found"));
+    public Booking newBookingRequest(Long userId, Long courtId, LocalDateTime bookingDateTime) {
+        verifyBookingTime(bookingDateTime);
+        verifyCourtExistence(courtId);
+        verifyUserExistence(userId);
+
+        if (isCourtOccupied(courtId, bookingDateTime)) {
+            throw new CourtOccupiedException("Court is already occupied at the requested time");
+        }
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new BookingNotFoundException("User ID not found"));
+
+        Court court = courtRepository.findById(courtId)
+                .orElseThrow(() -> new CourtNotFoundException("Court ID not found"));
 
         Booking booking = new Booking();
         booking.setUser(user);
         booking.setCourt(court);
-        booking.setBookingTime(bookingTime);
-        if (bookingTime.isBefore(LocalDateTime.now())) {
-            throw new RuntimeException("Booking cannot be made in the past!");
-        }
+        booking.setBookingTime(bookingDateTime);
         return bookingRepository.save(booking);
 
     }
@@ -57,20 +61,33 @@ public class BookingServiceImpl implements BookingService {
                 new BookingNotFoundException("Booking not found"));
         booking.setConfirmed(confirmed);
         bookingRepository.save(booking);
+
     }
 
-    private void validateCourtAvailability(Long courtId, LocalDateTime bookingTime) {
-        boolean isOccupied = bookingRepository.existsByCourtIdAndBookingTime(courtId, bookingTime);
-        if (isOccupied) {
-            throw new CourtOccupiedException("Court is already occupied at this time.");
+    @Override
+    public boolean isCourtOccupied(Long courtId, LocalDateTime bookingDateTime) {
+        return bookingRepository.existsByCourtIdAndBookingTime(courtId, bookingDateTime);
+    }
+
+    @Override
+    public void verifyCourtExistence(Long courtId) {
+        if (!courtRepository.existsById(courtId)) {
+            throw new CourtNotFoundException("Court ID not found");
         }
     }
 
+    @Override
+    public void verifyBookingTime(LocalDateTime bookingDateTime) {
+        if (bookingDateTime == null) {
+            throw new BookingNotFoundException("Booking time not found");
+        }
+    }
 
-
-
-
-
-
+    @Override
+    public void verifyUserExistence(Long userId) {
+        if (!userRepository.existsById(userId)) {
+            throw new BookingNotFoundException("User ID not found");
+        }
+    }
 
 }
