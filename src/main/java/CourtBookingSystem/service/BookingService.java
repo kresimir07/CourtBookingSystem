@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface BookingService {
 
-    Booking bookCourt(Long userId, Long courtId, LocalDateTime bookingTime);
+    Booking newBookingRequest(Long userId, Long courtId, LocalDateTime bookingTime);
     List<Booking> getAllBookings();
     void confirmBooking(Long bookingId, Boolean confirmed);
 

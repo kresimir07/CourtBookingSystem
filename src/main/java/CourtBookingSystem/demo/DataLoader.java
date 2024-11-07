@@ -5,7 +5,6 @@ import CourtBookingSystem.model.Court;
 import CourtBookingSystem.model.Role;
 import CourtBookingSystem.model.Surface;
 import CourtBookingSystem.model.User;
-import CourtBookingSystem.service.*;
 //import org.example.CourtBookingSystem.service.*;
 //org.example.
 import lombok.RequiredArgsConstructor;
@@ -60,28 +59,28 @@ public class DataLoader implements CommandLineRunner {
 
         // Save bookings
         userService.getUserByUsername("mmaric")
-                .ifPresent(user -> bookingService.bookCourt(
+                .ifPresent(user -> bookingService.newBookingRequest(
                         user.getId(),
                         court1.getId(),
                         LocalDateTime.of(2024, 12, 1, 10, 0)
                 ));
 
         userService.getUserByUsername("kvulic")
-                .ifPresent(user -> bookingService.bookCourt(
+                .ifPresent(user -> bookingService.newBookingRequest(
                         user.getId(),
                         court2.getId(),
                         LocalDateTime.of(2024, 12, 1, 10, 0)
                 ));
 
         userService.getUserByUsername("vvulic")
-                .ifPresent(user -> bookingService.bookCourt(
+                .ifPresent(user -> bookingService.newBookingRequest(
                         user.getId(),
                         court3.getId(),
                         LocalDateTime.of(2024, 12, 1, 10, 0)
                 ));
 
         userService.getUserByUsername("hcolic")
-                .ifPresent(user -> bookingService.bookCourt(
+                .ifPresent(user -> bookingService.newBookingRequest(
                         user.getId(),
                         court4.getId(),
                         LocalDateTime.of(2024, 12, 1, 10, 0)

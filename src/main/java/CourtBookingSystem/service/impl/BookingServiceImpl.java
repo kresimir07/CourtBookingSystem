@@ -24,7 +24,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     @Transactional
-    public Booking bookCourt(Long userId, Long courtId, LocalDateTime bookingTime) {
+    public Booking newBookingRequest(Long userId, Long courtId, LocalDateTime bookingTime) {
         User user = userRepository.findById(userId).orElseThrow(() ->
                 new RuntimeException("User not found"));
         Court court = courtRepository.findById(courtId).orElseThrow(() ->

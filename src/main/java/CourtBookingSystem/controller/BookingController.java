@@ -19,11 +19,11 @@ public class BookingController {
     private final BookingService bookingService;
 
     @PostMapping("/create")
-    public Booking bookCourt(@RequestBody BookingRequestDTO bookingRequest) {
+    public Booking newBookingRequest(@RequestBody BookingRequestDTO bookingRequest) {
         Long userId = bookingRequest.getUserId();
         Long courtId = bookingRequest.getCourtId();
         LocalDateTime bookingDateTime = LocalDateTime.parse(bookingRequest.getBookingTime());
-        return bookingService.bookCourt(userId, courtId, bookingDateTime);
+        return bookingService.newBookingRequest(userId, courtId, bookingDateTime);
     }
 
     @GetMapping

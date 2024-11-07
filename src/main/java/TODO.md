@@ -14,6 +14,9 @@ Important updates to perform for final version:
 - *Implement price for the booking reservation 1hour = 4 Euro, 30 minutes = 2Euro*
 - *Booking duration - Option to book for entire hour and or 30minutes*
 - *Rename new booking method*
+- *Edit error message "Court not found" to list all available courts for easier reservation*
+- *Add explanations in Postman about requests*
+- *Create README file with all requirements from student portal*
 
 SECURITY BASED: 
 - *Modify security request/access for :*
