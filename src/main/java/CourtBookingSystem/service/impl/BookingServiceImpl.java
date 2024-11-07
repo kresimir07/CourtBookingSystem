@@ -3,7 +3,6 @@ package CourtBookingSystem.service.impl;
 import CourtBookingSystem.exception.BookingNotFoundException;
 import CourtBookingSystem.exception.CourtNotFoundException;
 import CourtBookingSystem.exception.CourtOccupiedException;
-import CourtBookingSystem.exception.UsernameNotFoundException;
 import lombok.RequiredArgsConstructor;
 import CourtBookingSystem.model.Booking;
 import CourtBookingSystem.model.Court;

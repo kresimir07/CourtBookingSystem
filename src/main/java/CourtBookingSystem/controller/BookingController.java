@@ -21,7 +21,6 @@ public class BookingController {
     private final BookingService bookingService;
 
     @PostMapping("/create")
-//    public Booking newBookingRequest(@RequestBody BookingRequestDTO bookingRequest) {
     public ResponseEntity<Booking> newBookingRequest(@RequestBody BookingRequestDTO bookingRequest){
         Long userId = bookingRequest.getUserId();
         Long courtId = bookingRequest.getCourtId();
@@ -29,7 +28,6 @@ public class BookingController {
         if (bookingDateTime.isBefore(LocalDateTime.now())) {
             throw new RuntimeException("Booking cannot be made in the past");
         }
-//        return bookingService.newBookingRequest(userId, courtId, bookingDateTime);
         Booking booking = bookingService.newBookingRequest(userId, courtId, bookingDateTime);
         return new ResponseEntity<>(booking, HttpStatus.CREATED);
     }
