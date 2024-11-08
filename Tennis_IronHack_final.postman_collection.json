@@ -7,44 +7,690 @@
 	},
 	"item": [
 		{
-			"name": "Login_requests",
+			"name": "AdminOperations",
 			"item": [
 				{
-					"name": "AdminLogin",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "noauth"
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\" : \"kvulic\",\r\n    \"password\" : \"1234\"\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+					"name": "AdminConfirmations",
+					"item": [
+						{
+							"name": "BookingConfirmation",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "[\r\n    {\r\n        \"bookingId\": 5,\r\n        \"confirmed\": true\r\n    },\r\n    {\r\n        \"bookingId\": 2,\r\n        \"confirmed\": false\r\n    }\r\n]",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/bookings/confirm",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"bookings",
+										"confirm"
+									]
 								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"login"
-							]
-						},
-						"description": "Login to DB as Admin"
-					},
-					"response": []
+							},
+							"response": []
+						}
+					]
 				},
+				{
+					"name": "AdminLogin",
+					"item": [
+						{
+							"name": "AdminLogin",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"kvulic\",\r\n    \"password\" : \"1234\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "UserRelatedRequests",
+					"item": [
+						{
+							"name": "GetAllUsers",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"kvulic\",\r\n    \"password\" : \"1234\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/users/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"users",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateUser",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \r\n        \"name\": \"Final test user1\",\r\n        \"username\": \"ftu2345\",\r\n        \"password\": \"ftu1\"           \r\n        \r\n    }\r\n        \r\n    ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/users/createNew",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"users",
+										"createNew"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "EditUsersByUserId",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \r\n        \"name\": \"Maria Maric\",\r\n        \"username\": \"mamaric\",\r\n        \"password\": \"{bcrypt}$2a$10$y1ER6Etxj/fLhM3teVXNNugt4.rUjzG1wX7JxEtDIgan7VOnvShL6\",\r\n        \"roles\": [\r\n            {\r\n                \"id\": 2,\r\n                \"name\": \"ROLE_ADMIN\"\r\n            }\r\n        ]\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/users/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"users",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteUser",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "\r\n// If entered id does not exist, or it is already deleted, it will return error \"User with id {id} not found\"\r\n// If anything is assigned to user, uesr will not be deleted it will return error",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/users/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"users",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "RoleRequests",
+					"item": [
+						{
+							"name": "AddRoleToUser",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"vvulic\",\r\n    \"roleName\" : \"ROLE_ADMIN\"\r\n\r\n}\r\n// If data is incorrect it will throw an error : \"User or role not found \"\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/roles/addToUser",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"roles",
+										"addToUser"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "RemoveRoleFromUser",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"vvulic\",\r\n    \"roleName\" : \"ROLE_ADMIN\"\r\n\r\n}\r\n\r\n// If incorrect role is entered it will throw an error \"Role not found\"\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/roles/removeRoleFromUser",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"roles",
+										"removeRoleFromUser"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GetAllRoles",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"kvulic\",\r\n    \"password\" : \"1234\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/roles/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"roles",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateRole",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \r\n        \"name\": \"ROLE_GUEST\"\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/roles/createNew",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"roles",
+										"createNew"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteRoleById",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "//If role is assigned to user, role will not be deleted, for test purpose create new role, then delete role with id 3.",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/roles/3",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"roles",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "SurfaceRequests",
+					"item": [
+						{
+							"name": "GetAllSurfaces",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"kvulic\",\r\n    \"password\" : \"1234\"\r\n\r\n}\r\n\r\n\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/surface/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"surface",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateNewSurface",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"name\": \"test\"\r\n}\r\n\r\n\r\n\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/surface/createNew",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"surface",
+										"createNew"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DeleteSurfaceById",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "//If surface is assigned to court it will not be deleted, for testing purpose create new surface then delete by id 5",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/surface/5",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"surface",
+										"5"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "CourtRequests",
+					"item": [
+						{
+							"name": "GetAllCourts",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/courts/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"courts",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateNewCourt",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \r\n        \"name\": \"Court E\"\r\n}\r\n        ",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/courts/createNew",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"courts",
+										"createNew"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateCourtById",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \r\n        \"name\": \"Court test\",\r\n        \"surface\": {\r\n            \"id\": 1,\r\n            \"name\": \"Clay test\"\r\n        },\r\n        \"indoor\": true\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/courts/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"courts",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "UpdateSurfaceForCourt",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n        \"id\": 1,\r\n        \"name\": \"Court A\",\r\n        \"surface\": {\r\n            \"id\": 2,\r\n            \"name\": \"Hard\"\r\n        },\r\n        \"indoor\": false\r\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/courts/surfaceToCourt",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"courts",
+										"surfaceToCourt"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "BookingRequests",
+					"item": [
+						{
+							"name": "GetAllBookings",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"kvulic\",\r\n    \"password\" : \"1234\"\r\n\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/bookings/all",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"bookings",
+										"all"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CreateNewBooking",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"userId\": 2,\r\n    \"courtId\": 4,\r\n    \"startTime\": \"2024-12-13T15:00:00\",\r\n    \"endTime\": \"2024-12-13T15:31:00\"\r\n    \r\n}\r\n\r\n//If userId, or courtId is not found in database, it will return error messages : \"User not found\" or \"Court not found\"\r\n//If user tries to create booking in the past, it will return error message : \"Booking cannot be made in the past!\"\"\r\n// If the court is already occupied at requested time, it will return error : \"Court is already occupied at the requested time\"\r\n//If user tries to make booking with endTime before startTime it will throw error: \"End time is before start time\"\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/bookings/createNew",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"bookings",
+										"createNew"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "UserOperations",
+			"item": [
 				{
 					"name": "UserLogin",
 					"protocolProfileBehavior": {
@@ -79,740 +725,10 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "User_related_requests",
-			"item": [
-				{
-					"name": "GetAllUsers",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzQ5OTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.hGLYDcHCohq0t9cb_-IAukcn0y2vTBHJJW-0FqETiKM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\" : \"kvulic\",\r\n    \"password\" : \"1234\"\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/users/all",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"users",
-								"all"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "CreateUser",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzQ5OTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.hGLYDcHCohq0t9cb_-IAukcn0y2vTBHJJW-0FqETiKM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n        \r\n        \"name\": \"Final test user1\",\r\n        \"username\": \"ftu2345\",\r\n        \"password\": \"ftu1\"           \r\n        \r\n    }\r\n        \r\n    ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/users/createNew",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"users",
-								"createNew"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "EditUsersByUserId",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzQ5OTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.hGLYDcHCohq0t9cb_-IAukcn0y2vTBHJJW-0FqETiKM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \r\n        \"name\": \"Maria Maric\",\r\n        \"username\": \"mamaric\",\r\n        \"password\": \"{bcrypt}$2a$10$y1ER6Etxj/fLhM3teVXNNugt4.rUjzG1wX7JxEtDIgan7VOnvShL6\",\r\n        \"roles\": [\r\n            {\r\n                \"id\": 2,\r\n                \"name\": \"ROLE_ADMIN\"\r\n            }\r\n        ]\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/users/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"users",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DeleteUser",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzQ5OTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.hGLYDcHCohq0t9cb_-IAukcn0y2vTBHJJW-0FqETiKM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "\r\n// If entered id does not exist, or it is already deleted, it will return error \"User with id {id} not found\"\r\n// If anything is assigned to user, uesr will not be deleted it will return error",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/users/5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"users",
-								"5"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Role_requests",
-			"item": [
-				{
-					"name": "AddRoleToUser",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzQ5OTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.hGLYDcHCohq0t9cb_-IAukcn0y2vTBHJJW-0FqETiKM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\" : \"vvulic\",\r\n    \"roleName\" : \"ROLE_ADMIN\"\r\n\r\n}\r\n// If data is incorrect it will throw an error : \"User or role not found \"\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/roles/addToUser",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"roles",
-								"addToUser"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "RemoveRoleFromUser",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzQ5OTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.hGLYDcHCohq0t9cb_-IAukcn0y2vTBHJJW-0FqETiKM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\" : \"vvulic\",\r\n    \"roleName\" : \"ROLE_ADMIN\"\r\n\r\n}\r\n\r\n// If incorrect role is entered it will throw an error \"Role not found\"\r\n\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/roles/removeRoleFromUser",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"roles",
-								"removeRoleFromUser"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "GetAllRoles",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzQ5OTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.hGLYDcHCohq0t9cb_-IAukcn0y2vTBHJJW-0FqETiKM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\" : \"kvulic\",\r\n    \"password\" : \"1234\"\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/roles/all",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"roles",
-								"all"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "CreateRole",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzQ5OTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.hGLYDcHCohq0t9cb_-IAukcn0y2vTBHJJW-0FqETiKM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n        \r\n        \"name\": \"ROLE_GUEST\"\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/roles/createNew",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"roles",
-								"createNew"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DeleteRoleById",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzQ5OTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.hGLYDcHCohq0t9cb_-IAukcn0y2vTBHJJW-0FqETiKM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "//If role is assigned to user, role will not be deleted, for test purpose create new role, then delete role with id 3.",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/roles/3",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"roles",
-								"3"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Surface_requests",
-			"item": [
-				{
-					"name": "GetAllSurfaces",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzQ5OTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.hGLYDcHCohq0t9cb_-IAukcn0y2vTBHJJW-0FqETiKM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\" : \"kvulic\",\r\n    \"password\" : \"1234\"\r\n\r\n}\r\n\r\n\r\n\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/surface/all",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"surface",
-								"all"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "CreateNewSurface",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzQ5OTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.hGLYDcHCohq0t9cb_-IAukcn0y2vTBHJJW-0FqETiKM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n        \"name\": \"test\"\r\n}\r\n\r\n\r\n\r\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/surface/createNew",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"surface",
-								"createNew"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "DeleteSurfaceById",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzQ5OTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.hGLYDcHCohq0t9cb_-IAukcn0y2vTBHJJW-0FqETiKM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "//If surface is assigned to court it will not be deleted, for testing purpose create new surface then delete by id 5",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/surface/5",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"surface",
-								"5"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Court_requests",
-			"item": [
-				{
-					"name": "GetAllCourts",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzQ5OTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.hGLYDcHCohq0t9cb_-IAukcn0y2vTBHJJW-0FqETiKM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/courts/all",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"courts",
-								"all"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "CreateNewCourt",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzQ5OTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.hGLYDcHCohq0t9cb_-IAukcn0y2vTBHJJW-0FqETiKM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n        \r\n        \"name\": \"Court E\"\r\n}\r\n        ",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/courts/createNew",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"courts",
-								"createNew"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "UpdateCourtById",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzQ5OTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.hGLYDcHCohq0t9cb_-IAukcn0y2vTBHJJW-0FqETiKM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n        \r\n        \"name\": \"Court test\",\r\n        \"surface\": {\r\n            \"id\": 1,\r\n            \"name\": \"Clay test\"\r\n        },\r\n        \"indoor\": true\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/courts/1",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"courts",
-								"1"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "UpdateSurfaceForCourt",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzQ5OTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.hGLYDcHCohq0t9cb_-IAukcn0y2vTBHJJW-0FqETiKM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n        \"id\": 1,\r\n        \"name\": \"Court A\",\r\n        \"surface\": {\r\n            \"id\": 2,\r\n            \"name\": \"Hard\"\r\n        },\r\n        \"indoor\": false\r\n    }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/courts/surfaceToCourt",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"courts",
-								"surfaceToCourt"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Booking_requests",
-			"item": [
-				{
-					"name": "GetAllBookings",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzQ5OTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.hGLYDcHCohq0t9cb_-IAukcn0y2vTBHJJW-0FqETiKM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"username\" : \"kvulic\",\r\n    \"password\" : \"1234\"\r\n\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/bookings/all",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"bookings",
-								"all"
-							]
-						}
-					},
-					"response": []
 				},
 				{
 					"name": "CreateNewBooking",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzQ5OTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.hGLYDcHCohq0t9cb_-IAukcn0y2vTBHJJW-0FqETiKM",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -841,51 +757,6 @@
 					"response": []
 				}
 			]
-		},
-		{
-			"name": "Admin_confirmations",
-			"item": [
-				{
-					"name": "BookingConfirmation",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzQ5OTksImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.hGLYDcHCohq0t9cb_-IAukcn0y2vTBHJJW-0FqETiKM",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "[\r\n    {\r\n        \"bookingId\": 5,\r\n        \"confirmed\": true\r\n    },\r\n    {\r\n        \"bookingId\": 2,\r\n        \"confirmed\": false\r\n    }\r\n]",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/bookings/confirm",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"bookings",
-								"confirm"
-							]
-						}
-					},
-					"response": []
-				}
-			]
 		}
 	],
 	"auth": {
@@ -893,7 +764,7 @@
 		"bearer": [
 			{
 				"key": "token",
-				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzEwNzUyNDEsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.uLHmoi02DO1iObLYVjlntpiJlJL7Yc5OV5A7-is3tIM",
+				"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJrdnVsaWMiLCJleHAiOjE3MzExMDA0MjgsImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MC9hcGkvbG9naW4iLCJyb2xlcyI6WyJST0xFX0FETUlOIl19.t3hpRK1cTvHP89i5CAP7gWJ3ZIQtDtMhgjruuE_F2c8",
 				"type": "string"
 			}
 		]
