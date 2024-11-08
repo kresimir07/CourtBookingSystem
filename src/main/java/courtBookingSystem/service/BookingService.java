@@ -4,6 +4,7 @@ import courtBookingSystem.model.Booking;
 import java.time.LocalDateTime;
 import java.util.List;
 
+
 public interface BookingService {
 
     Booking newBookingRequest(Long userId, Long courtId, LocalDateTime startTime, LocalDateTime endTime);

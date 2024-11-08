@@ -1,5 +1,6 @@
 package courtBookingSystem.controller;
 
+import courtBookingSystem.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import courtBookingSystem.dto.BookingConfirmationDTO;
 import courtBookingSystem.dto.BookingRequestDTO;
@@ -7,9 +8,11 @@ import courtBookingSystem.model.Booking;
 import courtBookingSystem.service.BookingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDateTime;
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/api/bookings")
@@ -18,6 +21,7 @@ public class BookingController {
 
 
     private final BookingService bookingService;
+    private final UserServiceImpl userServiceImpl;
 
     @PostMapping("/create")
     public ResponseEntity<Booking> newBookingRequest(@RequestBody BookingRequestDTO bookingRequest) {

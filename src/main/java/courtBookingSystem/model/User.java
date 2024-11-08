@@ -10,8 +10,7 @@ import static jakarta.persistence.FetchType.EAGER;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
+
 public class User {
 
     @Id
@@ -28,6 +27,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
+
     private Collection<Role> roles = new ArrayList<>();
 
     public User(String name, String username, String password) {
@@ -35,5 +35,7 @@ public class User {
         this.username = username;
         this.password = password;
     }
+
+
 
 }
