@@ -15,13 +15,13 @@ public class SurfaceController {
 
     private final SurfaceService surfaceService;
 
-    @GetMapping
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<Surface> getSurfaces() {
         return surfaceService.getSurfaces();
     }
 
-    @PostMapping("/new-surface")
+    @PostMapping("/createNew")
     @ResponseStatus(HttpStatus.CREATED)
     public void saveSurfaceType(@RequestBody Surface surface) {
         surfaceService.newSurface(surface);

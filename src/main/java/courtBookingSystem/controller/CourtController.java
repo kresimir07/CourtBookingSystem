@@ -14,13 +14,13 @@ public class CourtController {
 
     private final CourtService courtService;
 
-    @GetMapping
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<Court>getAllCourts() {
         return courtService.getAllCourts();
     }
 
-    @PostMapping("/create")
+    @PostMapping("/createNew")
     @ResponseStatus(HttpStatus.CREATED)
     public void newCourt(@RequestBody Court court) {
         courtService.newCourt(court);
@@ -32,7 +32,7 @@ public class CourtController {
         return courtService.updateCourt(id, updatedCourt);
     }
 
-    @PutMapping("/surface-to-court")
+    @PutMapping("/surfaceToCourt")
     @ResponseStatus(HttpStatus.OK)
     public void addOrModifySurfaceToCourt(@RequestBody Court court) {
         courtService.addOrModifySurfaceToCourt(court.getId(), court.getSurface().getId());

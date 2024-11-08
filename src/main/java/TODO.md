@@ -11,10 +11,9 @@ Important updates to perform for final version:
 Court related:
 ~~- *Validation that booking cant be made in history*~~
 ~~- *Rename new booking method*~~
-- *Option for user to modify their own booking*
-- *Option for ADMIN to modify ALL created bookings*
+
 ~~- *Validation to check if the court is busy in requested time*~~
-- 
+~~- *Booking duration time frame - Option to book for entire hour and or 30minutes*~~
 ~~Pricing related:~~ 
 ~~- *Implement price for the booking reservation 1hour = 4 Euro, 30 minutes = 2Euro*~~
 
@@ -36,8 +35,10 @@ Future updates to implement:
 - *Messages to Admin that there is a booking that needs to be confirmed, messages to user that his booking has been confirmed*
 - *Implement entire history of booked courts by user - this will require to change my application properties ddl-auto to update*
 - *Implement working hours of specific court and appropriate booking time and messages*
-- *Booking duration time frame - Option to book for entire hour and or 30minutes*
+
 - *Edit error message "Court not found" to list all available courts for easier reservation*
+- *Option for user to modify their own booking*
+
 
 
 

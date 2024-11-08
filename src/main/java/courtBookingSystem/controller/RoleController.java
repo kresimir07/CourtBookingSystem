@@ -17,21 +17,21 @@ public class RoleController {
 
 
 
-    @GetMapping
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<Role> getRoles() {
         return roleService.getRoles();
     }
 
 
-    @PutMapping("/add-to-user")
+    @PutMapping("/addToUser")
     @ResponseStatus(HttpStatus.OK)
     public void addOrModifyRoleToUser(@RequestBody RoleToUserDTO roleToUserDTO) {
         roleService.addOrModifyRoleToUser(roleToUserDTO.getUsername(), roleToUserDTO.getRoleName());
     }
 
 
-    @PostMapping("/createRole")
+    @PostMapping("/createNew")
     @ResponseStatus(HttpStatus.CREATED)
     public void newRole(@RequestBody Role role) {
        roleService.newRole(role);
@@ -49,7 +49,7 @@ public class RoleController {
     }
 
 
-    @PutMapping("/remove-role-from-user")
+    @PutMapping("/removeRoleFromUser")
     @ResponseStatus(HttpStatus.OK)
     public void removeRoleFromUser(@RequestBody RoleToUserDTO roleToUserDTO) {
         roleService.removeRoleFromUser(roleToUserDTO.getUsername(), roleToUserDTO.getRoleName());

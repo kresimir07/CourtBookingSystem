@@ -17,14 +17,14 @@ public class UserController {
     private final UserService userService;
 
 
-    @GetMapping
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<User> getUsers() {
         return userService.getUsers();
     }
 
 
-    @PostMapping
+    @PostMapping("/createNew")
     @ResponseStatus(HttpStatus.CREATED)
     public void saveUser(@RequestBody User user) {
          userService.saveUser(user);
@@ -41,8 +41,6 @@ public class UserController {
     public void delete(@PathVariable Long id) {
         userService.deleteUserById(id);
     }
-
-
 
 
 }

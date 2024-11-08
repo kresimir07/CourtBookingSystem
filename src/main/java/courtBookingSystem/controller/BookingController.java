@@ -23,7 +23,7 @@ public class BookingController {
     private final BookingService bookingService;
     private final UserServiceImpl userServiceImpl;
 
-    @PostMapping("/create")
+    @PostMapping("/createNew")
     public ResponseEntity<Booking> newBookingRequest(@RequestBody BookingRequestDTO bookingRequest) {
         Long userId = bookingRequest.getUserId();
         Long courtId = bookingRequest.getCourtId();
@@ -40,7 +40,7 @@ public class BookingController {
         return new ResponseEntity<>(booking, HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<Booking> getAllBookings() {
         return bookingService.getAllBookings();
