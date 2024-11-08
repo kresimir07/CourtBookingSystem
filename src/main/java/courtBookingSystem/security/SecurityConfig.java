@@ -68,19 +68,33 @@ public class SecurityConfig {
 
         // set up authorization for different request matchers and user roles
         http.authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/api/login/**").permitAll()// public endpoint, we could add more if we wanted to
-                .requestMatchers(GET, "/api/users").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-                .requestMatchers(POST, "/api/users/create").hasAnyAuthority("ROLE_ADMIN")
-                .requestMatchers(DELETE).hasAnyAuthority("ROLE_ADMIN")
-                .requestMatchers(GET, "/api/roles").hasAnyAuthority("ROLE_ADMIN")
-                .requestMatchers(PUT, "/api/roles/add-to-user").hasAnyAuthority("ROLE_ADMIN")
-                .requestMatchers(POST, "/api/roles/remove-from-user").hasAnyAuthority("ROLE_ADMIN")
-                .requestMatchers(GET, "/api/surface").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-                .requestMatchers(POST, "/surface/surface-to-save").hasAnyAuthority("ROLE_ADMIN")
-                .requestMatchers(GET, "/api/courts").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
-                .requestMatchers(POST, "/api/courts/courts-to-save").hasAnyAuthority("ROLE_ADMIN")
-                .requestMatchers(DELETE, "/api/users").hasAnyAuthority("ROLE_ADMIN")
-                .anyRequest().authenticated()); // any other endpoints require authentication
+//                                       NO AUTH public endpoint
+                .requestMatchers("/api/login/**").permitAll()
+//                                       USER ALLOWED REQUESTS
+                .requestMatchers(POST, "/api/bookings/createNew").hasAnyAuthority("ROLE_USER", "ROLE_ADMIN")
+                .anyRequest().hasAuthority("ROLE_ADMIN")); // any other endpoints require authentication
+//               ADMIN REQUESTS they are all combined in .anyRequest() and require auth so they do not need to be declared one by one
+//                .requestMatchers(GET, "/api/users/all").hasAuthority("ROLE_ADMIN")
+//                .requestMatchers(POST, "/api/courts/createNew").hasAuthority("ROLE_ADMIN")
+//                .requestMatchers(POST, "/api/roles/createNew").hasAuthority("ROLE_ADMIN")
+//                .requestMatchers(POST, "/api/surface/createNew").hasAuthority("ROLE_ADMIN")
+//                .requestMatchers(POST, "/api/users/createNew").hasAuthority("ROLE_ADMIN")
+//                .requestMatchers(GET, "/api/bookings/all").hasAuthority("ROLE_ADMIN")
+//                .requestMatchers(GET, "/api/courts/all").hasAuthority("ROLE_ADMIN")
+//                .requestMatchers(GET, "/api/roles/all").hasAuthority("ROLE_ADMIN")
+//                .requestMatchers(GET, "/api/surface/all").hasAuthority("ROLE_ADMIN")
+//                .requestMatchers(GET, "/api/users/all").hasAuthority("ROLE_ADMIN")
+//                .requestMatchers(PUT, "/api/bookings/confirm").hasAuthority("ROLE_ADMIN")
+//                .requestMatchers(PUT, "/api/courts/surfaceToCourt").hasAuthority("ROLE_ADMIN")
+//                .requestMatchers(PUT, "/api/roles/addToUser").hasAuthority("ROLE_ADMIN")
+//                .requestMatchers(PUT, "/api/roles/removeRoleFromUser").hasAuthority("ROLE_ADMIN")
+//                .requestMatchers(PATCH, "/api/courts/{id}").hasAuthority("ROLE_ADMIN")
+//                .requestMatchers(PATCH, "/api/users/{id}").hasAuthority("ROLE_ADMIN")
+//                .requestMatchers(PATCH, "/api/roles/{id}").hasAuthority("ROLE_ADMIN")
+//                .requestMatchers(PATCH, "/api/surface/{id}").hasAuthority("ROLE_ADMIN")
+
+//      This way all tasks that require DELETE can be only performed by admin, we dont need to declare them separately
+//                .requestMatchers(DELETE).hasAuthority("ROLE_ADMIN")
 
         // add the custom authentication filter to the http security object
         http.addFilter(customAuthenticationFilter);
