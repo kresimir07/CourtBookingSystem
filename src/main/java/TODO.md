@@ -14,16 +14,13 @@ Court related:
 - *Option for user to modify their own booking*
 - *Option for ADMIN to modify ALL created bookings*
 ~~- *Validation to check if the court is busy in requested time*~~
-
-
-
-Pricing related: 
-
-- *Implement price for the booking reservation 1hour = 4 Euro, 30 minutes = 2Euro*
+- 
+~~Pricing related:~~ 
+~~- *Implement price for the booking reservation 1hour = 4 Euro, 30 minutes = 2Euro*~~
 
 Other: 
 
-- *Add explanations in Postman about requests*
+~~- *Add explanations in Postman about requests*~~
 - *Create README file with all requirements from student portal*
 
 SECURITY BASED: 

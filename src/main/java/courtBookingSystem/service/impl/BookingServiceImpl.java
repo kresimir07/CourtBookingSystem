@@ -25,25 +25,28 @@ public class BookingServiceImpl implements BookingService {
     private final UserRepository userRepository;
     private final CourtRepository courtRepository;
 
-    public Booking newBookingRequest(Long userId, Long courtId, LocalDateTime bookingDateTime) {
-        verifyBookingTime(bookingDateTime);
+    public Booking newBookingRequest(Long userId, Long courtId, LocalDateTime startTime, LocalDateTime endTime) {
+        verifyBookingTime(startTime, endTime);
         verifyCourtExistence(courtId);
         verifyUserExistence(userId);
 
-        if (isCourtOccupied(courtId, bookingDateTime)) {
+        if (isCourtOccupied(courtId, startTime)) {
             throw new CourtOccupiedException("Court is already occupied at the requested time");
         }
 
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new BookingNotFoundException("User ID not found"));
-
         Court court = courtRepository.findById(courtId)
                 .orElseThrow(() -> new CourtNotFoundException("Court ID not found"));
 
         Booking booking = new Booking();
         booking.setUser(user);
         booking.setCourt(court);
-        booking.setBookingDateTime(bookingDateTime);
+        booking.setStartTime(startTime);
+        booking.setEndDateTime(endTime);
+
+        double price = booking.calculatePrice();
+        booking.setPrice(price);
         return bookingRepository.save(booking);
 
     }
@@ -64,8 +67,9 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public boolean isCourtOccupied(Long courtId, LocalDateTime bookingDateTime) {
-        return bookingRepository.existsByCourtIdAndBookingDateTime(courtId, bookingDateTime);
+    public boolean isCourtOccupied(Long courtId, LocalDateTime startTime) {
+        return bookingRepository.existsByCourtIdAndStartTime(courtId, startTime);
+
     }
 
     @Override
@@ -76,9 +80,9 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public void verifyBookingTime(LocalDateTime bookingDateTime) {
-        if (bookingDateTime == null) {
-            throw new BookingNotFoundException("Booking time not found");
+    public void verifyBookingTime(LocalDateTime startTime, LocalDateTime endTime) {
+        if (startTime == null || endTime == null || !startTime.isBefore(endTime)) {
+            throw new BookingNotFoundException("Invalid booking time");
         }
     }
 

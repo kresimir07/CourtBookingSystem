@@ -93,12 +93,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public Optional<User> getUserByUsername(String username) {
-        // Assuming userRepository.findByUsername(String username) returns a User or null
+
         return Optional.ofNullable(userRepository.findByUsername(username));
+
     }
-
-
-
-
 
 }

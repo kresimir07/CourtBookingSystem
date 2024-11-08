@@ -1,16 +1,19 @@
 package courtBookingSystem.dto;
 
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Data
 public class BookingRequestDTO {
 
     private Long userId;
     private Long courtId;
-    private String bookingTime;
+    private String startTime;
+    private String endTime;
 
 
 }

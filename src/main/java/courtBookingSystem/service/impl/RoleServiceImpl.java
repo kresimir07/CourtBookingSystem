@@ -33,7 +33,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
 
-//    Method to replace existing and assign new role to User
+//    Method to replace existing and assign new role to User, or to add missing role to user
     @Override
     public void addOrModifyRoleToUser(String username, String roleName) {
         log.info("Adding role {} to user {}", roleName, username);

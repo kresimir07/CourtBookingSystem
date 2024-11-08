@@ -4,7 +4,6 @@ import courtBookingSystem.model.Surface;
 import courtBookingSystem.service.SurfaceService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 
@@ -31,6 +30,7 @@ public class SurfaceController {
     
 //    This works only if surface is not assigned to any of the courts. If assigned surface needs to be deleted,
 //    first it needs to be unassigned from court, which can be done through Court edit
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {

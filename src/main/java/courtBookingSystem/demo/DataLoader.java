@@ -1,19 +1,12 @@
 package courtBookingSystem.demo;
+import courtBookingSystem.model.*;
 import courtBookingSystem.service.*;
 import lombok.Data;
-import courtBookingSystem.model.Court;
-import courtBookingSystem.model.Role;
-import courtBookingSystem.model.Surface;
-import courtBookingSystem.model.User;
-//import org.example.CourtBookingSystem.service.*;
-//org.example.
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-
-
 import java.time.LocalDateTime;
-
+import java.util.Optional;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
@@ -57,46 +50,30 @@ public class DataLoader implements CommandLineRunner {
         Court court3 = courtService.newCourt(new Court("Centre Court", grass, FALSE));
         Court court4 = courtService.newCourt(new Court("Rod Laver Arena", hard, TRUE));
 
-        // Save bookings
-        userService.getUserByUsername("mmaric")
-                .ifPresent(user -> bookingService.newBookingRequest(
-                        user.getId(),
-                        court1.getId(),
-                        LocalDateTime.of(2024, 12, 1, 10, 0)
-                ));
 
-        userService.getUserByUsername("kvulic")
-                .ifPresent(user -> bookingService.newBookingRequest(
-                        user.getId(),
-                        court2.getId(),
-                        LocalDateTime.of(2024, 12, 1, 10, 0)
-                ));
+        // Create sample bookings - used different durations of booking to test functionality for math task
+        createSampleBooking("mmaric", court1, LocalDateTime.of(2024, 12, 1, 10, 0),
+                LocalDateTime.of(2024, 12, 1, 11, 30)); // 1.5-hour booking
 
-        userService.getUserByUsername("vvulic")
-                .ifPresent(user -> bookingService.newBookingRequest(
-                        user.getId(),
-                        court3.getId(),
-                        LocalDateTime.of(2024, 12, 1, 10, 0)
-                ));
+        createSampleBooking("kvulic", court2, LocalDateTime.of(2024, 12, 2, 9, 30),
+                LocalDateTime.of(2024, 12, 2, 11, 30)); // 2-hour booking
 
-        userService.getUserByUsername("hcolic")
-                .ifPresent(user -> bookingService.newBookingRequest(
-                        user.getId(),
-                        court4.getId(),
-                        LocalDateTime.of(2024, 12, 1, 10, 0)
-                ));
+        createSampleBooking("vvulic", court3, LocalDateTime.of(2024, 12, 3, 14, 0),
+                LocalDateTime.of(2024, 12, 3, 14, 30)); // 30 minutes booking
 
-
-
-
-
-
-
-
-
+        createSampleBooking("hcolic", court4, LocalDateTime.of(2024, 12, 4, 16, 0),
+                LocalDateTime.of(2024, 12, 4, 18, 30)); // 2.5-hour booking
     }
 
-
+    private void createSampleBooking(String username, Court court, LocalDateTime startTime, LocalDateTime endTime) {
+        Optional<User> userOptional = userService.getUserByUsername(username);
+        userOptional.ifPresent(user -> bookingService.newBookingRequest(
+                user.getId(),
+                court.getId(),
+                startTime,
+                endTime
+        ));
+    }
 
 }
 

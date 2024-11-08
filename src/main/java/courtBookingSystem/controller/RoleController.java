@@ -15,7 +15,7 @@ public class RoleController {
 
     private final RoleService roleService;
 
-//     Testirano i ispravno
+
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
@@ -23,7 +23,6 @@ public class RoleController {
         return roleService.getRoles();
     }
 
-// Testirano i ispravno mozda dodati samo log poruke
 
     @PutMapping("/add-to-user")
     @ResponseStatus(HttpStatus.OK)
@@ -31,17 +30,18 @@ public class RoleController {
         roleService.addOrModifyRoleToUser(roleToUserDTO.getUsername(), roleToUserDTO.getRoleName());
     }
 
-//    Testirano i ispravno isto mozda dodati samo poruke, kao nova rola sacuvana
 
     @PostMapping("/createRole")
     @ResponseStatus(HttpStatus.CREATED)
     public void newRole(@RequestBody Role role) {
        roleService.newRole(role);
     }
-// Testirano i ispravno - dodati log poruke
+
 //   This will NOT work if role which is meant to be deleted is assigned to any of the users because of the foreign key constraint.
-//   To make it work use method removeRoleFromUser and then delete the role, reason why i did not wanted to implement
-//   as one function is to keep additional layer of security so that Admin would not delete ROLE_ADMIN by mistake
+//   To make it work use request removeRoleFromUser and then delete the role, reason why i did not wanted to implement
+//   as one function is to keep additional layer of security so that Admin would not delete ROLE_ADMIN by mistake.
+//    I will try to create mapping to drop everything that is related to specific user (userId)
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteRoleById(@PathVariable Long id) {

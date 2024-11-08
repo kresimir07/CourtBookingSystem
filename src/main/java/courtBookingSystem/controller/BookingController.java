@@ -8,7 +8,6 @@ import courtBookingSystem.service.BookingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -21,14 +20,19 @@ public class BookingController {
     private final BookingService bookingService;
 
     @PostMapping("/create")
-    public ResponseEntity<Booking> newBookingRequest(@RequestBody BookingRequestDTO bookingRequest){
+    public ResponseEntity<Booking> newBookingRequest(@RequestBody BookingRequestDTO bookingRequest) {
         Long userId = bookingRequest.getUserId();
         Long courtId = bookingRequest.getCourtId();
-        LocalDateTime bookingDateTime = LocalDateTime.parse(bookingRequest.getBookingTime());
-        if (bookingDateTime.isBefore(LocalDateTime.now())) {
+        LocalDateTime startTime = LocalDateTime.parse(bookingRequest.getStartTime());
+        LocalDateTime endTime = LocalDateTime.parse(bookingRequest.getEndTime());
+
+        if (startTime.isBefore(LocalDateTime.now())) {
             throw new RuntimeException("Booking cannot be made in the past");
         }
-        Booking booking = bookingService.newBookingRequest(userId, courtId, bookingDateTime);
+        if (endTime.isBefore(startTime)) {
+            throw new RuntimeException("End time is before start time");
+        }
+        Booking booking = bookingService.newBookingRequest(userId, courtId, startTime, endTime);
         return new ResponseEntity<>(booking, HttpStatus.CREATED);
     }
 
@@ -45,9 +49,6 @@ public class BookingController {
             bookingService.confirmBooking(request.getBookingId(), request.getConfirmed());
         }
     }
-
-
-
 
 
 }
