@@ -4,12 +4,10 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.util.Collection;
 
-
+@Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 public class Surface {
 
     @Id
