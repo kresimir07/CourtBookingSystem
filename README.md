@@ -35,7 +35,7 @@ Application runs on http://localhost:3306, so ensure this port is not being used
 You will need a MySQL database named tennis_club_db.  
 *    Configuration:  
 Configure the database connection parameters in the application.properties file.    
-Provide the database URL, username, and password. The application.properties file is typically locatedin the src/main/resources directory.  
+Provide the database URL, username, and password. The application.properties file is typically located in the src/main/resources directory.  
 
 ```
    spring.datasource.url=jdbc:mysql://localhost:3306/tennis_club_db
@@ -91,7 +91,7 @@ Finally, JPA (Java Persistence API) has been used to very simply map Java object
 I will provide 3 examples of routes in the code. 
 
 ### 1) Login  (Depends on entered credentials, option as admin, or user)
-To login to application there is route created  
+To log in to application there is route created  
 /api/login - it requires user to enter some parameters in body of the request as JSON raw format ie:  
 
 ```
@@ -136,10 +136,10 @@ Followed by same approach to enter parameters in body of the request as JSON raw
 ```  
 _**In this example we also see implementation of robust mechanism HTTP RESPONSES built in application.**_  
 
-This messages are not only visible in console output, they are also returning back as HTTP RESPONSE to POSTMAN for example.  
+These messages are not only visible in console output, they are also returning back as HTTP RESPONSE to POSTMAN for example.  
 
 * Returns an HTTP status code 201 (Created) if added successfully.
-* Returns an HTTP status code 404 (Not found) + HTTP RESPONSE message "User ID or court ID not found" if there is data missmatch. 
+* Returns an HTTP status code 404 (Not found) + HTTP RESPONSE message "User ID or court ID not found" if there is data mismatch. 
 * Returns an HTTP status code 403 (Forbidden) + HTTP RESPONSE message "Booking cannot be made in past"  
 if user tries to create booking in the past.  
 * Returns an HTTP status code 409 (Conflict) + HTTP RESPONSE message "Court is already occupied at the requested time"  
@@ -205,8 +205,8 @@ Only allowable route for ROLE_USER is :
 ```
 
 
-In future implentation user will have also accces to route to create new user.  
-But first i need to implent 2 things, first a query to deny registration if user already exist,  
+In future implementation user will also have access to route to create new user.  
+But first I need to implement 2 things, first a query to deny registration if user already exist,  
 and option that creating new user will hide roles, and set user role as default.
 
 ALL the other routes can be performed only by Admin, which can be visible from edited SecurityConfig class .
@@ -228,12 +228,12 @@ ALL the other routes can be performed only by Admin, which can be visible from e
 ## Future Work
 
 
-* Finalising application to have all backend funcionalities 
+* Finalising application to have all backend functionalities 
 * Notifications: Implement email/SMS notifications for booking confirmations and reminders.
 * Payment Integration: Integrate payment gateways for booking payments.
 * Enhanced Reporting: Add features for generating detailed reports on bookings and court usage.
 * Frontend Developing: Build FrontEnd environment based on this backend development
-* Hopefully hand it off once fully done to local tennis court for easier booking managment system
+* Hopefully hand it off once fully done to local tennis court for easier booking management system
 
 ## Resources 
 
