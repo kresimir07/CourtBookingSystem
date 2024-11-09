@@ -111,6 +111,7 @@ Only allowable route for ROLE_USER is :
 /api/bookings/createNew   - ALOWS USER TO CREATE NEW BOOKING
 ```
 
+
 In future implentation user will have also accces to route to create new user. 
 But first i need to implent in that rout that only USER_ROLE can be created.  
 Or to create an option to create only USER_ROLE with USER as default role.   
