@@ -1,11 +1,9 @@
 package courtBookingSystemFinal.dto;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import courtBookingSystemFinal.model.Court;
 
+@Data
 
-@Getter
-@Setter
 public class CourtResponseDTO extends Court {
 
     private String message;

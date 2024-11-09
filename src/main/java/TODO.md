@@ -22,7 +22,7 @@ Other:
 ~~- *Edit security config file to add only routes for admin privileges, while other routes will be considered as non admin routes*~~
 ~~- *Check privileges for both USER role, as it currently can edit user data, which means it can assign itself to ADMIN role*~~
 
-- *Create README file with all requirements from student portal*
+~~- *Create README file with all requirements from student portal*~~
 
 ***
 Future updates to implement: 

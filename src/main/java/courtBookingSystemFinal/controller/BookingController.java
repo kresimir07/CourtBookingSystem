@@ -21,7 +21,7 @@ public class BookingController {
 
 
     private final BookingService bookingService;
-    private final UserServiceImpl userServiceImpl;
+
 
     @PostMapping("/createNew")
     public ResponseEntity<Booking> newBookingRequest(@RequestBody BookingRequestDTO bookingRequest) {
