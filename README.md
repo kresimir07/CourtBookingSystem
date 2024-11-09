@@ -71,13 +71,15 @@ If you are using POSTMAN for requests you can use Postman's request collection f
 
 
 
-The technologies used for this project have been Java as a programming language, using IntelliJ as an IDE.  
-Maven has been used as a package manager to inject the dependencies, downloaded from the cloud, necessary to carry out and compile the project,  
-or to facilitate coding. For example, the Lombok library has been used to reduce the amount of boilerplate code and speed up repetitive code.  
-The set of Spring Boot libraries that configure the Spring framework and thus allow establishing the structure of the project by layers (model, controller, repository, service)   
-have also been used. This Spring context makes it easy to create the application by managing, for example, the connection and queries to the database through requests to the built  
-controllers. In this case MySQL is used as the relational database management system to store and retrieve data.  
-Finally, JPA (Java Persistence API) has been used to very simply map Java objects to entities in the relational database, without having to write SQL queries directly.  
+The technologies used for this project have been Java as a programming language, using IntelliJ as an IDE. Maven has 
+been used as a package manager to inject the dependencies, downloaded from the cloud, necessary to carry out and 
+compile the project, or to facilitate coding. For example, the Lombok library has been used to reduce the amount of 
+boilerplate code and speed up repetitive code.The set of Spring Boot libraries that configure the Spring framework and 
+thus allow establishing the structure of the project by layers (model, controller, repository, service) have also been 
+used. This Spring context makes it easy to create the application by managing, for example, the connection and queries 
+to the database through requests to the built  controllers. In this case MySQL is used as the relational database 
+management system to store and retrieve data.Finally, JPA (Java Persistence API) has been used to very simply map Java 
+objects to entities in the relational database, without having to write SQL queries directly.
 
 
 
