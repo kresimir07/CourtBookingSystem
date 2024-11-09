@@ -1,6 +1,5 @@
 package courtBookingSystemFinal.controller;
 
-import courtBookingSystemFinal.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import courtBookingSystemFinal.dto.BookingConfirmationDTO;
 import courtBookingSystemFinal.dto.BookingRequestDTO;
