@@ -31,6 +31,9 @@ Future updates to implement:
 - *Implement working hours of specific court and appropriate booking time and messages*
 - *Edit error message "Court not found" to list all available courts for easier reservation*
 - *Option for user to modify their own booking*
+- *Add query to deny registration if username already exists*
+- *Modify /users/createNew to allow registration only by default ROLE_USER - that way i can open that route to public*
+
 
 
 

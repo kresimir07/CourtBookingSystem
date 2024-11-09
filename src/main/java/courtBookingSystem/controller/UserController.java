@@ -26,8 +26,8 @@ public class UserController {
 
     @PostMapping("/createNew")
     @ResponseStatus(HttpStatus.CREATED)
-    public void saveUser(@RequestBody User user) {
-         userService.saveUser(user);
+    public void createNewUser(@RequestBody User user) {
+         userService.createNewUser(user);
     }
 
     @PatchMapping("/{id}")

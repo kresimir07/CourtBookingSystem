@@ -34,6 +34,7 @@ public class BookingServiceImpl implements BookingService {
         if (isCourtOccupied(courtId, startTime)) {
             throw new CourtOccupiedException("Court is already occupied at the requested time");
         }
+
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new BookingNotFoundException("User ID not found"));
         Court court = courtRepository.findById(courtId)
