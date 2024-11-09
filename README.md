@@ -226,7 +226,7 @@ ALL the other routes can be performed only by Admin, which can be visible from e
 
 ## Future Work
 
-----
+
 * Finalising application to have all backend funcionalities 
 * Notifications: Implement email/SMS notifications for booking confirmations and reminders.
 * Payment Integration: Integrate payment gateways for booking payments.
@@ -236,7 +236,7 @@ ALL the other routes can be performed only by Admin, which can be visible from e
 
 ## Resources 
 
-----
+
 
 [Spring Boot Documentation](https://docs.spring.io/spring-boot/index.html)  
 [Spring Data JPA](https://spring.io/projects/spring-data-jpa)  
