@@ -9,8 +9,9 @@
 
 
 
-The Court Booking System is a fully-featured application designed to facilitate the booking and management of sports courts.  
-It provides a seamless and efficient way for users to reserve courts for various sports activities—such as tennis—through an online interface.  
+"Welcome to the Tennis Sport House🎾 where you have an amazing opportunity to book some of the finest courts we offer! Whether you feel like Rafael Nadal  on the 'Philippe Chatrier Court,' Novak Djokovic at 'Palexpo,' Roger Federer 🐐 on 'Centre Court,' or Andy Murray at 'Rod Laver Arena,' our booking system is here to provide a seamless experience. Choose your court and start playing like a champion! 🥇"  
+
+
 The system includes several core functionalities:
 * User Management: Enables administrators to manage system users, including creating, updating, and deleting user profiles.
 * Court Management: Administrators can manage courts and their attributes, including adding new courts, updating court details, and assigning surfaces to courts.
