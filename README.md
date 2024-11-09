@@ -2,12 +2,12 @@
 
 # Final Project | Court Booking System
 
-----
+
 
 
 ## Project Description
 
-----
+
 
 The Court Booking System is a fully-featured application designed to facilitate the booking and management of sports courts.  
 It provides a seamless and efficient way for users to reserve courts for various sports activities—such as tennis—through an online interface.  
@@ -18,7 +18,7 @@ The system includes several core functionalities:
 
 ## Class Diagram
 
-----
+
 
 ![tennis_club_db.jpg](https://raw.githubusercontent.com/kresimir07/CourtBookingSystem/refs/heads/master/tennis_club_db.jpg)
 ## Setup
@@ -68,7 +68,7 @@ If you are using POSTMAN for requests you can use Postman's request collection f
 
 ## Technologies Used
 
-----
+
 
 The technologies used for this project have been Java as a programming language, using IntelliJ as an IDE.  
 Maven has been used as a package manager to inject the dependencies, downloaded from the cloud, necessary to carry out and compile the project,  
@@ -83,7 +83,7 @@ Finally, JPA (Java Persistence API) has been used to very simply map Java object
 
 ## Controllers and Routes structure
 
-----
+
 
 ### Description of POST, GET, PUT, PATCH and DELETE type routes:
 
@@ -219,7 +219,7 @@ ALL the other routes can be performed only by Admin, which can be visible from e
 
 ## Extra Links
 
-----
+
 
 
 
@@ -248,7 +248,7 @@ ALL the other routes can be performed only by Admin, which can be visible from e
 
 ## Team members
 
-----
+
 
 [Krešimir Vulić](https://github.com/kresimir07) 
 
