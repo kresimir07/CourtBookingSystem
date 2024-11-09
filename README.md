@@ -221,7 +221,7 @@ ALL the other routes can be performed only by Admin, which can be visible from e
 ## Extra Links
 
 
-
+[Google Slides presentation](https://docs.google.com/presentation/d/1VrXBD8bT09FLZvhbSyMsJCo02SUjR_dyPmEELW-xXCI/edit?usp=sharing)
 
 
 
